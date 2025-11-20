@@ -11,6 +11,11 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import FindJob from "./pages/FindJob";
 import JobDetails from "./pages/JobDetails";
+import FindEmployers from "./pages/FindEmployers";
+import EmployerDetails from "./pages/EmployerDetails";
+import FindCandidate from "./pages/FindCandidate";
+import Dashboard from "./pages/Dashboard";
+import AppliedJobs from "./pages/AppliedJobs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +35,11 @@ const App = () => (
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/find-job" element={<FindJob />} />
           <Route path="/job/:id" element={<JobDetails />} />
+          <Route path="/find-employers" element={<FindEmployers />} />
+          <Route path="/employer/:id" element={<EmployerDetails />} />
+          <Route path="/find-candidate" element={<FindCandidate />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/applied-jobs" element={<AppliedJobs />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
