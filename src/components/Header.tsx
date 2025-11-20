@@ -41,15 +41,21 @@ const Header = () => {
                 Find Job
               </Typography>
             </Link>
-            <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
-              Find Employers
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
-              Dashboard
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
-              Job Alerts
-            </Typography>
+            <Link to="/find-employers" style={{ textDecoration: 'none' }}>
+              <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
+                Find Employers
+              </Typography>
+            </Link>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
+                Dashboard
+              </Typography>
+            </Link>
+            <Link to="/find-candidate" style={{ textDecoration: 'none' }}>
+              <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
+                Find Candidate
+              </Typography>
+            </Link>
             <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer' }}>
               Customer Supports
             </Typography>
