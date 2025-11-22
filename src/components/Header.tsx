@@ -90,7 +90,7 @@ const Header = () => {
       {/* Main Navigation Bar */}
       <AppBar position="static" sx={{ bgcolor: 'background.paper', boxShadow: '0 2px 4px rgba(0,0,0,0.08)' }}>
         <Container maxWidth="lg">
-          <Toolbar sx={{ justifyContent: 'space-between', py: 1.5 }}>
+          <Toolbar sx={{ justifyContent: 'space-between', py: 1.5, gap: 2 }}>
             {/* Logo and Country Selector */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -164,7 +164,28 @@ const Header = () => {
               </FormControl>
             </Box>
 
-            {/* Center - Sign In and Post A Jobs */}
+            {/* Center - Search Bar */}
+            <Box sx={{ flex: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', maxWidth: 400 }}>
+              <TextField
+                placeholder="Job title, keyword, company"
+                size="small"
+                fullWidth
+                sx={{ 
+                  '& .MuiOutlinedInput-root': {
+                    bgcolor: 'background.default'
+                  }
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search size={18} color="#999" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+
+            {/* Right - Sign In and Post A Jobs */}
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
               <Button 
                 variant="text" 
@@ -190,27 +211,6 @@ const Header = () => {
               >
                 Post A Jobs
               </Button>
-            </Box>
-
-            {/* Search Bar */}
-            <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 1, alignItems: 'center' }}>
-              <TextField
-                placeholder="Job title, keyword, company"
-                size="small"
-                sx={{ 
-                  width: 250,
-                  '& .MuiOutlinedInput-root': {
-                    bgcolor: 'background.default'
-                  }
-                }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search size={18} color="#999" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
             </Box>
           </Toolbar>
         </Container>
