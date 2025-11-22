@@ -21,25 +21,15 @@ const Header = () => {
   const [country, setCountry] = useState('india');
 
   return (
-    <Box sx={{ position: 'sticky', top: 0, zIndex: 1100 }}>
+    <Box sx={{ position: 'sticky', top: 0, zIndex: 1100, bgcolor: 'background.paper' }}>
       {/* Top Navigation Bar */}
-      <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', py: 1 }}>
+      <Box sx={{ bgcolor: '#F7F7F8', borderBottom: '1px solid', borderColor: 'divider', py: 1.5 }}>
         <Container maxWidth="lg">
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            {/* Left side - Phone */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Phone size={16} color="#666" />
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  +1-202-555-0178
-                </Typography>
-              </Box>
-            </Box>
-            
-            {/* Center - Navigation Links */}
-            <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 3, alignItems: 'center' }}>
+            {/* Left side - Navigation Links */}
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
               <Link to="/" style={{ textDecoration: 'none' }}>
-                <Typography sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, cursor: 'pointer', fontSize: '0.875rem' }}>
+                <Typography sx={{ color: 'primary.main', fontWeight: 500, cursor: 'pointer', fontSize: '0.875rem', borderBottom: '2px solid', borderColor: 'primary.main', pb: 0.5 }}>
                   Home
                 </Typography>
               </Link>
@@ -66,22 +56,79 @@ const Header = () => {
               </Typography>
             </Box>
 
-            {/* Right side - Language Selector */}
-            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <FormControl size="small" sx={{ minWidth: 120, display: { xs: 'none', sm: 'block' } }}>
+            {/* Right side - Phone and Language */}
+            <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 3, alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Phone size={16} color="#666" />
+                <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.875rem' }}>
+                  +1-202-555-0178
+                </Typography>
+              </Box>
+
+              <FormControl size="small" sx={{ minWidth: 120 }}>
                 <Select
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  sx={{ fontSize: '0.875rem', '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
+                  sx={{ 
+                    fontSize: '0.875rem', 
+                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+                    '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1 }
+                  }}
+                  renderValue={(value) => (
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇺🇸</span>
+                      <span>English</span>
+                    </Box>
+                  )}
                 >
-                  <MenuItem value="english">English</MenuItem>
-                  <MenuItem value="spanish">Spanish</MenuItem>
-                  <MenuItem value="french">French</MenuItem>
-                  <MenuItem value="german">German</MenuItem>
-                  <MenuItem value="chinese">Chinese</MenuItem>
-                  <MenuItem value="japanese">Japanese</MenuItem>
-                  <MenuItem value="hindi">Hindi</MenuItem>
-                  <MenuItem value="arabic">Arabic</MenuItem>
+                  <MenuItem value="english">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇺🇸</span>
+                      <span>English</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="spanish">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇪🇸</span>
+                      <span>Spanish</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="french">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇫🇷</span>
+                      <span>French</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="german">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇩🇪</span>
+                      <span>German</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="chinese">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇨🇳</span>
+                      <span>Chinese</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="japanese">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇯🇵</span>
+                      <span>Japanese</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="hindi">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇮🇳</span>
+                      <span>Hindi</span>
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="arabic">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: '1.2rem' }}>🇸🇦</span>
+                      <span>Arabic</span>
+                    </Box>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Box>
