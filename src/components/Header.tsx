@@ -27,11 +27,13 @@ const Header = () => {
         <Container maxWidth="lg">
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             {/* Left side - Phone */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
-              <Phone size={16} color="#666" />
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                +1-202-555-0178
-              </Typography>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Phone size={16} color="#666" />
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  +1-202-555-0178
+                </Typography>
+              </Box>
             </Box>
             
             {/* Center - Navigation Links */}
