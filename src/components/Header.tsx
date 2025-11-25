@@ -140,8 +140,8 @@ const Header = () => {
       <AppBar position="static" sx={{ bgcolor: 'background.paper', boxShadow: '0 2px 4px rgba(0,0,0,0.08)' }}>
         <Container maxWidth="lg">
           <Toolbar sx={{ justifyContent: 'space-between', py: 1.5, gap: 2 }}>
-            {/* Logo and Country Selector */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            {/* Left - Logo, Country Selector, and Search Bar */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
               <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Briefcase size={28} color="#0066FF" />
                 <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600 }}>
@@ -211,15 +211,15 @@ const Header = () => {
                   </MenuItem>
                 </Select>
               </FormControl>
-            </Box>
 
-            {/* Center - Search Bar */}
-            <Box sx={{ flex: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', maxWidth: 400 }}>
+              {/* Search Bar - Near Country Selector */}
               <TextField
                 placeholder="Job title, keyword, company"
                 size="small"
-                fullWidth
                 sx={{ 
+                  flex: 1,
+                  maxWidth: 350,
+                  display: { xs: 'none', md: 'flex' },
                   '& .MuiOutlinedInput-root': {
                     bgcolor: 'background.default'
                   }
@@ -227,7 +227,7 @@ const Header = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Search size={18} color="#999" />
+                      <Search size={18} color="#0066FF" />
                     </InputAdornment>
                   ),
                 }}
@@ -241,8 +241,9 @@ const Header = () => {
                 onClick={() => navigate('/signin')}
                 sx={{ 
                   display: { xs: 'none', sm: 'flex' },
-                  color: 'text.secondary',
-                  textTransform: 'none'
+                  color: '#0066FF',
+                  textTransform: 'none',
+                  fontWeight: 500
                 }}
               >
                 Sign In
@@ -252,8 +253,8 @@ const Header = () => {
                 variant="contained" 
                 onClick={() => navigate('/signup')}
                 sx={{ 
-                  bgcolor: 'primary.main',
-                  '&:hover': { bgcolor: 'primary.dark' },
+                  bgcolor: '#0066FF',
+                  '&:hover': { bgcolor: '#0052CC' },
                   textTransform: 'none',
                   px: 3
                 }}
