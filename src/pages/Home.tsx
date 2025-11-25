@@ -1,28 +1,33 @@
 import { Container, Box, Typography, TextField, Button, Grid, Card, CardContent, Chip, InputAdornment, Avatar, IconButton, Paper } from '@mui/material';
-import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star } from 'lucide-react';
+import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
+import jobIllustration from '@/assets/job-illustration.jpeg';
 
 const Home = () => {
   const navigate = useNavigate();
 
   const stats = [
-    { icon: <Briefcase />, number: '1,75,324', label: 'Live Job' },
-    { icon: <Building2 />, number: '97,354', label: 'Companies' },
-    { icon: <FileText />, number: '38,47,154', label: 'Candidates' },
-    { icon: <Briefcase />, number: '7,532', label: 'New Jobs' }
+    { icon: <Briefcase size={32} />, number: '1,75,324', label: 'Live Job', bgColor: '#E8F3FF' },
+    { icon: <Building2 size={32} />, number: '97,354', label: 'Companies', bgColor: '#E8F3FF' },
+    { icon: <Users size={32} />, number: '38,47,154', label: 'Candidates', bgColor: '#E8F3FF' },
+    { icon: <Briefcase size={32} />, number: '7,532', label: 'New Jobs', bgColor: '#E8F3FF' }
   ];
 
   const vacancies = [
     { title: 'Anesthesiologists', openings: '45,904 Open Positions' },
     { title: 'Surgeons', openings: '50,364 Open Positions' },
-    { title: 'Software Engineer', openings: '50,364 Open Positions' },
-    { title: 'Graphic Designer', openings: '50,364 Open Positions' },
-    { title: 'Data Analyst Managers', openings: '50,364 Open Positions' },
-    { title: 'Restaurant Managers', openings: '50,364 Open Positions' },
-    { title: 'IT Manager', openings: '50,364 Open Positions' },
-    { title: 'Customer Service Representatives', openings: '50,364 Open Positions' }
+    { title: 'Obstetricians-Gynecologists', openings: '4,339 Open Positions' },
+    { title: 'Orthodontists', openings: '20,079 Open Positions' },
+    { title: 'Maxillofacial Surgeons', openings: '74,875 Open Positions' },
+    { title: 'Software Developer', openings: '43,359 Open Positions' },
+    { title: 'Psychiatrists', openings: '18,599 Open Positions' },
+    { title: 'Data Scientist', openings: '28,200 Open Positions', featured: true },
+    { title: 'Financial Manager', openings: '61,391 Open Positions' },
+    { title: 'Management Analysis', openings: '93,046 Open Positions' },
+    { title: 'IT Manager', openings: '50,963 Open Positions' },
+    { title: 'Operations Research Analysis', openings: '16,627 Open Positions' }
   ];
 
   const howItWorks = [
@@ -87,7 +92,7 @@ const Home = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Search size={20} />
+                        <Search size={20} color="#0066FF" />
                       </InputAdornment>
                     ),
                   }}
@@ -99,7 +104,7 @@ const Home = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <MapPin size={20} />
+                        <MapPin size={20} color="#0066FF" />
                       </InputAdornment>
                     ),
                   }}
@@ -108,7 +113,7 @@ const Home = () => {
                   variant="contained" 
                   size="large"
                   onClick={() => navigate('/find-job')}
-                  sx={{ px: 4 }}
+                  sx={{ px: 4, bgcolor: '#0066FF', '&:hover': { bgcolor: '#0052CC' } }}
                 >
                   Find Job
                 </Button>
@@ -119,9 +124,12 @@ const Home = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h1" sx={{ fontSize: '8rem', mb: -4 }}>👨‍💼</Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Job Portal Illustration</Typography>
+              <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img 
+                  src={jobIllustration} 
+                  alt="Job Portal Illustration" 
+                  style={{ maxWidth: '100%', height: 'auto' }}
+                />
               </Box>
             </Grid>
           </Grid>
@@ -130,17 +138,27 @@ const Home = () => {
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {stats.map((stat, index) => (
               <Grid item xs={6} md={3} key={index}>
-                <Card>
-                  <CardContent sx={{ textAlign: 'center' }}>
-                    <Box sx={{ color: 'primary.main', mb: 1, display: 'flex', justifyContent: 'center' }}>
+                <Card sx={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+                  <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 3 }}>
+                    <Box sx={{ 
+                      bgcolor: stat.bgColor, 
+                      p: 1.5, 
+                      borderRadius: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#0066FF'
+                    }}>
                       {stat.icon}
                     </Box>
-                    <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
-                      {stat.number}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      {stat.label}
-                    </Typography>
+                    <Box>
+                      <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5, fontSize: '1.5rem' }}>
+                        {stat.number}
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        {stat.label}
+                      </Typography>
+                    </Box>
                   </CardContent>
                 </Card>
               </Grid>
@@ -157,16 +175,45 @@ const Home = () => {
         <Grid container spacing={2}>
           {vacancies.map((vacancy, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card sx={{ cursor: 'pointer', '&:hover': { boxShadow: 3 } }}>
-                <CardContent>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
-                    {vacancy.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {vacancy.openings}
-                  </Typography>
-                </CardContent>
-              </Card>
+              <Box sx={{ 
+                cursor: 'pointer', 
+                '&:hover .vacancy-title': { color: '#0066FF' },
+                py: 2,
+                borderBottom: '1px solid',
+                borderColor: 'divider'
+              }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography 
+                      className="vacancy-title"
+                      variant="subtitle1" 
+                      sx={{ 
+                        fontWeight: 600, 
+                        mb: 0.5,
+                        transition: 'color 0.2s',
+                        fontSize: '0.95rem'
+                      }}
+                    >
+                      {vacancy.title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.875rem' }}>
+                      {vacancy.openings}
+                    </Typography>
+                  </Box>
+                  {vacancy.featured && (
+                    <Chip 
+                      label="Featured" 
+                      size="small" 
+                      sx={{ 
+                        bgcolor: '#0066FF', 
+                        color: 'white',
+                        height: 20,
+                        fontSize: '0.7rem'
+                      }} 
+                    />
+                  )}
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>
