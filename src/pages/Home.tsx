@@ -1,5 +1,6 @@
 import { Container, Box, Typography, TextField, Button, Grid, Card, CardContent, Chip, InputAdornment, Avatar, IconButton, Paper } from '@mui/material';
-import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users } from 'lucide-react';
+import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users, ChevronLeft } from 'lucide-react';
+import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -56,17 +57,28 @@ const Home = () => {
   ];
 
   const companies = [
-    { name: 'Dribbble', logo: '🎨', location: 'Dhaka, Bangladesh', openings: 3, color: '#EA4C89' },
-    { name: 'Linkedin', logo: 'in', location: 'Dhaka, Bangladesh', openings: 3, color: '#0077B5' },
-    { name: 'Tesla', logo: 'T', location: 'Dhaka, Bangladesh', openings: 3, color: '#E82127' },
-    { name: 'Google', logo: 'G', location: 'Dhaka, Bangladesh', openings: 3, color: '#4285F4' }
+    { name: 'Dribbble', location: 'United States', featured: true, color: '#EA4C89', icon: '🏀' },
+    { name: 'Upwork', location: 'United States', color: '#14A800', icon: '⬆️' },
+    { name: 'Slack', location: 'China', color: '#E01E5A', icon: '#️⃣' },
+    { name: 'Freepik', location: 'United States', color: '#1273EB', icon: '📷' },
+    { name: 'Microsoft', location: 'United States', color: '#00A4EF', icon: '🪟' },
+    { name: 'Adobe', location: 'United States', color: '#FF0000', icon: '🅰️' },
+    { name: 'Netflix', location: 'United States', color: '#E50914', icon: '🎬' },
+    { name: 'Amazon', location: 'United States', color: '#FF9900', icon: '📦' }
   ];
 
+  const [companyIndex, setCompanyIndex] = useState(0);
+
   const testimonials = [
-    { name: 'Bessie Cooper', role: 'Creative Director', avatar: '👤', rating: 5, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus tincidunt eget eu, eget commodo condimentum non, fringilla fermentum. Morbi sed enim facilisis metus pretium leo, mauris.' },
-    { name: 'Jane Cooper', role: 'Photographer', avatar: '👤', rating: 5, text: 'Mauris eget lorem odio. Mauris convallis justo molestie metus aliquam lacinia. Suspendisse ut dui vulputate augue condimentum ornare. Morbi vitae tristique ante' },
-    { name: 'Robert Fox', role: 'UI/UX Designer', avatar: '👤', rating: 5, text: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse et magna quis nibh accumsan venenatis sit amet id orci. Duis vestibulum bibendum dapibus.' }
+    { name: 'Robert Fox', role: 'UI/UX Designer', avatar: '👤', rating: 5, text: '"Ut ullamcorper hendrerit tempor. Aliquam in rutrum dui. Maecenas ac placerat metus, in faucibus est."' },
+    { name: 'Bessie Cooper', role: 'Creative Director', avatar: '👤', rating: 5, text: '"Mauris eget lorem odio. Mauris convallis justo molestie metus aliquam lacinia. Suspendisse ut dui vulputate augue condimentum ornare. Morbi vitae tristique ante"' },
+    { name: 'Jane Cooper', role: 'Photographer', avatar: '👤', rating: 5, text: '"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse et magna quis nibh accumsan venenatis sit amet id orci. Duis vestibulum bibendum dapibus."' },
+    { name: 'John Smith', role: 'Marketing Manager', avatar: '👤', rating: 5, text: '"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae ultricies eget."' },
+    { name: 'Sarah Johnson', role: 'Product Designer', avatar: '👤', rating: 5, text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo."' },
+    { name: 'Mike Wilson', role: 'Software Engineer', avatar: '👤', rating: 5, text: '"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores."' }
   ];
+
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   return (
     <Box>
@@ -227,18 +239,6 @@ const Home = () => {
           </Typography>
         </Box>
         <Box sx={{ position: 'relative' }}>
-          {/* Connecting Line */}
-          <Box sx={{ 
-            position: 'absolute', 
-            top: '40px', 
-            left: '12.5%', 
-            right: '12.5%', 
-            height: '2px', 
-            bgcolor: '#E0E6F7',
-            zIndex: 0,
-            display: { xs: 'none', md: 'block' }
-          }} />
-          
           <Grid container spacing={4}>
             {howItWorks.map((item, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
@@ -399,36 +399,94 @@ const Home = () => {
           <Typography variant="h4" sx={{ fontWeight: 700 }}>
             Top companies
           </Typography>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <IconButton 
+              onClick={() => setCompanyIndex(Math.max(0, companyIndex - 4))}
+              disabled={companyIndex === 0}
+              sx={{ 
+                bgcolor: '#E7F0FA', 
+                '&:hover': { bgcolor: '#D0E4F7' },
+                '&:disabled': { bgcolor: '#F5F5F5' }
+              }}
+            >
+              <ChevronLeft size={20} color="#0066FF" />
+            </IconButton>
+            <IconButton 
+              onClick={() => setCompanyIndex(Math.min(companies.length - 4, companyIndex + 4))}
+              disabled={companyIndex >= companies.length - 4}
+              sx={{ 
+                bgcolor: '#E7F0FA', 
+                '&:hover': { bgcolor: '#D0E4F7' },
+                '&:disabled': { bgcolor: '#F5F5F5' }
+              }}
+            >
+              <ChevronRight size={20} color="#0066FF" />
+            </IconButton>
+          </Box>
         </Box>
         <Grid container spacing={3}>
-          {companies.map((company, index) => (
+          {companies.slice(companyIndex, companyIndex + 4).map((company, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card>
-                <CardContent sx={{ textAlign: 'center' }}>
-                  <Box sx={{ 
-                    width: 60, 
-                    height: 60, 
-                    bgcolor: company.color + '20', 
-                    borderRadius: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    mx: 'auto',
-                    mb: 2,
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    color: company.color
-                  }}>
-                    {company.logo}
+              <Card sx={{ 
+                border: '1px solid #E5E7EB',
+                boxShadow: 'none',
+                '&:hover': { boxShadow: '0 4px 12px rgba(0,0,0,0.08)' },
+                transition: 'all 0.3s'
+              }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mb: 2 }}>
+                    <Box sx={{ 
+                      width: 56, 
+                      height: 56, 
+                      bgcolor: company.color + '15', 
+                      borderRadius: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '1.75rem',
+                      flexShrink: 0
+                    }}>
+                      {company.icon}
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600, fontSize: '1rem' }}>
+                          {company.name}
+                        </Typography>
+                        {company.featured && (
+                          <Chip 
+                            label="Featured" 
+                            size="small" 
+                            sx={{ 
+                              bgcolor: '#FEF0E6', 
+                              color: '#FF6B00',
+                              height: 20,
+                              fontSize: '0.7rem',
+                              fontWeight: 600
+                            }} 
+                          />
+                        )}
+                      </Box>
+                      <Typography variant="caption" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>
+                        <MapPin size={12} />
+                        {company.location}
+                      </Typography>
+                    </Box>
                   </Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
-                    {company.name}
-                  </Typography>
-                  <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 2 }}>
-                    📍 {company.location}
-                  </Typography>
-                  <Button variant="contained" size="small" fullWidth>
-                    Open Position ({company.openings})
+                  <Button 
+                    variant="outlined" 
+                    size="small" 
+                    fullWidth
+                    sx={{ 
+                      borderColor: '#E5E7EB',
+                      color: '#0066FF',
+                      '&:hover': { 
+                        borderColor: '#0066FF',
+                        bgcolor: '#E7F0FA'
+                      }
+                    }}
+                  >
+                    Open Position
                   </Button>
                 </CardContent>
               </Card>
@@ -442,35 +500,101 @@ const Home = () => {
         <Typography variant="h4" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
           Clients Testimonial
         </Typography>
-        <Grid container spacing={3}>
-          {testimonials.map((testimonial, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Card>
-                <CardContent>
-                  <Box sx={{ display: 'flex', gap: 0.5, mb: 2 }}>
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={16} fill="#FFB800" color="#FFB800" />
-                    ))}
-                  </Box>
-                  <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
-                    {testimonial.text}
-                  </Typography>
-                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                    <Avatar sx={{ width: 48, height: 48 }}>{testimonial.avatar}</Avatar>
-                    <Box>
-                      <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-                        {testimonial.name}
-                      </Typography>
-                      <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                        {testimonial.role}
-                      </Typography>
+        <Box sx={{ position: 'relative' }}>
+          <IconButton 
+            onClick={() => setTestimonialIndex(Math.max(0, testimonialIndex - 1))}
+            disabled={testimonialIndex === 0}
+            sx={{ 
+              position: 'absolute',
+              left: -20,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              bgcolor: 'white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              '&:hover': { bgcolor: '#E7F0FA' },
+              '&:disabled': { bgcolor: '#F5F5F5' },
+              zIndex: 1
+            }}
+          >
+            <ChevronLeft size={24} color="#0066FF" />
+          </IconButton>
+          <IconButton 
+            onClick={() => setTestimonialIndex(Math.min(testimonials.length - 3, testimonialIndex + 1))}
+            disabled={testimonialIndex >= testimonials.length - 3}
+            sx={{ 
+              position: 'absolute',
+              right: -20,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              bgcolor: 'white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              '&:hover': { bgcolor: '#E7F0FA' },
+              '&:disabled': { bgcolor: '#F5F5F5' },
+              zIndex: 1
+            }}
+          >
+            <ChevronRight size={24} color="#0066FF" />
+          </IconButton>
+          <Grid container spacing={3}>
+            {testimonials.slice(testimonialIndex, testimonialIndex + 3).map((testimonial, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <Card sx={{ 
+                  height: '100%',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                  border: '1px solid #F0F0F0'
+                }}>
+                  <CardContent sx={{ p: 3 }}>
+                    <Box sx={{ display: 'flex', gap: 0.5, mb: 2 }}>
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} size={18} fill="#FFB800" color="#FFB800" />
+                      ))}
                     </Box>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                    <Typography variant="body2" sx={{ mb: 3, color: 'text.secondary', lineHeight: 1.7 }}>
+                      {testimonial.text}
+                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', position: 'relative' }}>
+                      <Avatar sx={{ width: 48, height: 48, bgcolor: '#FFD93D' }}>{testimonial.avatar}</Avatar>
+                      <Box>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                          {testimonial.name}
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                          {testimonial.role}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ 
+                        position: 'absolute',
+                        right: 0,
+                        fontSize: '4rem',
+                        color: '#E5E7EB',
+                        lineHeight: 1,
+                        fontFamily: 'Georgia, serif'
+                      }}>
+                        ❝
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 3 }}>
+            {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, index) => (
+              <Box 
+                key={index}
+                onClick={() => setTestimonialIndex(index * 3)}
+                sx={{ 
+                  width: 8,
+                  height: 8,
+                  borderRadius: '50%',
+                  bgcolor: Math.floor(testimonialIndex / 3) === index ? '#0066FF' : '#D1D5DB',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s'
+                }}
+              />
+            ))}
+          </Box>
+        </Box>
       </Container>
 
       {/* CTA Sections */}
