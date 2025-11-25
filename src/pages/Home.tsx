@@ -38,14 +38,14 @@ const Home = () => {
   ];
 
   const categories = [
-    { icon: '📱', title: 'Graphics & Design', openings: '357 Open position' },
-    { icon: '📊', title: 'Code & Programming', openings: '312 Open position' },
-    { icon: '💼', title: 'Digital Marketing', openings: '297 Open position' },
-    { icon: '📹', title: 'Video & Animation', openings: '247 Open position' },
-    { icon: '🎵', title: 'Music & Audio', openings: '204 Open position' },
-    { icon: '💰', title: 'Account & Finance', openings: '167 Open position' },
-    { icon: '❤️', title: 'Health & Care', openings: '125 Open position' },
-    { icon: '📝', title: 'Data & Science', openings: '57 Open position' }
+    { icon: <Layers size={24} />, title: 'Graphics & Design', openings: '357 Open position' },
+    { icon: <Briefcase size={24} />, title: 'Code & Programing', openings: '312 Open position' },
+    { icon: <Building2 size={24} />, title: 'Digital Marketing', openings: '297 Open position' },
+    { icon: <FileText size={24} />, title: 'Video & Animation', openings: '247 Open position' },
+    { icon: <Search size={24} />, title: 'Music & Audio', openings: '204 Open position' },
+    { icon: <Users size={24} />, title: 'Account & Finance', openings: '167 Open position' },
+    { icon: <UserCheck size={24} />, title: 'Health & Care', openings: '151 Open position' },
+    { icon: <Clock size={24} />, title: 'Data & Science', openings: '107 Open position' }
   ];
 
   const featuredJobs = [
@@ -226,34 +226,48 @@ const Home = () => {
             How jobpilot work
           </Typography>
         </Box>
-        <Grid container spacing={4}>
-          {howItWorks.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Box sx={{ 
-                  bgcolor: 'rgba(0,102,255,0.1)', 
-                  width: 80, 
-                  height: 80, 
-                  borderRadius: '50%', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  mx: 'auto',
-                  mb: 2,
-                  color: 'primary.main'
-                }}>
-                  {item.icon}
+        <Box sx={{ position: 'relative' }}>
+          {/* Connecting Line */}
+          <Box sx={{ 
+            position: 'absolute', 
+            top: '40px', 
+            left: '12.5%', 
+            right: '12.5%', 
+            height: '2px', 
+            bgcolor: '#E0E6F7',
+            zIndex: 0,
+            display: { xs: 'none', md: 'block' }
+          }} />
+          
+          <Grid container spacing={4}>
+            {howItWorks.map((item, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <Box sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                  <Box sx={{ 
+                    bgcolor: index === 1 ? '#0066FF' : 'rgba(0,102,255,0.1)', 
+                    width: 80, 
+                    height: 80, 
+                    borderRadius: '50%', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    mx: 'auto',
+                    mb: 2,
+                    color: index === 1 ? 'white' : '#0066FF'
+                  }}>
+                    {item.icon}
+                  </Box>
+                  <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    {item.description}
+                  </Typography>
                 </Box>
-                <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {item.description}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </Container>
 
       {/* Popular category */}
@@ -262,22 +276,43 @@ const Home = () => {
           <Typography variant="h4" sx={{ fontWeight: 700 }}>
             Popular category
           </Typography>
-          <Button endIcon={<ChevronRight />}>View All</Button>
+          <Button endIcon={<ChevronRight />} sx={{ color: '#0066FF' }}>View All</Button>
         </Box>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {categories.map((category, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card sx={{ cursor: 'pointer', transition: 'all 0.3s', '&:hover': { boxShadow: 3, transform: 'translateY(-4px)' } }}>
-                <CardContent>
-                  <Box sx={{ fontSize: '2rem', mb: 1 }}>{category.icon}</Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
+              <Box sx={{ 
+                cursor: 'pointer', 
+                transition: 'all 0.3s',
+                p: 2,
+                borderRadius: 1,
+                '&:hover': { bgcolor: 'rgba(0,102,255,0.05)' },
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2
+              }}>
+                <Box sx={{ 
+                  bgcolor: 'rgba(0,102,255,0.1)', 
+                  width: 48, 
+                  height: 48, 
+                  borderRadius: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#0066FF',
+                  flexShrink: 0
+                }}>
+                  {category.icon}
+                </Box>
+                <Box>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5, fontSize: '0.95rem' }}>
                     {category.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.875rem' }}>
                     {category.openings}
                   </Typography>
-                </CardContent>
-              </Card>
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>
@@ -289,21 +324,22 @@ const Home = () => {
           <Typography variant="h4" sx={{ fontWeight: 700 }}>
             Featured job
           </Typography>
-          <Button endIcon={<ChevronRight />} onClick={() => navigate('/find-job')}>View All</Button>
+          <Button endIcon={<ChevronRight />} onClick={() => navigate('/find-job')} sx={{ color: '#0066FF' }}>View All</Button>
         </Box>
-        <Grid container spacing={3}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {featuredJobs.map((job) => (
-            <Grid item xs={12} sm={6} md={6} key={job.id}>
-              <Card 
-                sx={{ 
-                  cursor: 'pointer',
-                  transition: 'all 0.3s',
-                  '&:hover': { boxShadow: 3, transform: 'translateY(-4px)' }
-                }}
-                onClick={() => navigate(`/job/${job.id}`)}
-              >
-                <CardContent sx={{ p: 3 }}>
-                  <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+            <Card 
+              key={job.id}
+              sx={{ 
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                '&:hover': { boxShadow: 2 }
+              }}
+              onClick={() => navigate(`/job/${job.id}`)}
+            >
+              <CardContent sx={{ p: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
                     <Box sx={{ 
                       width: 48, 
                       height: 48, 
@@ -313,36 +349,48 @@ const Home = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: 'white',
-                      fontWeight: 700
+                      fontWeight: 700,
+                      fontSize: '1.25rem'
                     }}>
                       {job.logo}
                     </Box>
-                    <Box sx={{ flex: 1 }}>
-                      <Box sx={{ display: 'flex', gap: 1, mb: 0.5 }}>
-                        <Typography variant="body2">{job.company}</Typography>
-                        {job.featured && <Chip label="Featured" size="small" color="warning" />}
-                        {job.remote && <Chip label="Remote" size="small" color="success" />}
+                    <Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                          {job.title}
+                        </Typography>
+                        {job.featured && <Chip label="Featured" size="small" sx={{ bgcolor: '#E7F0FA', color: '#0066FF', height: 20, fontSize: '0.7rem' }} />}
                       </Box>
-                      <Typography variant="caption" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <MapPin size={14} />
-                        {job.location}
-                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                          {job.company}
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                          {job.salary}
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                          <MapPin size={14} />
+                          {job.location}
+                        </Typography>
+                      </Box>
                     </Box>
                   </Box>
-                  <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
-                    {job.title}
-                  </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      {job.type} • {job.salary}
-                    </Typography>
-                    <Button variant="outlined" size="small">Apply Now</Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
+                  <Button 
+                    variant="contained" 
+                    size="small" 
+                    sx={{ 
+                      bgcolor: '#0066FF', 
+                      '&:hover': { bgcolor: '#0052CC' },
+                      px: 3
+                    }}
+                  >
+                    Apply Now
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
           ))}
-        </Grid>
+        </Box>
       </Container>
 
       {/* Top companies */}
