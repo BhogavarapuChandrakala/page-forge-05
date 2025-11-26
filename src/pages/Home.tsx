@@ -1,5 +1,5 @@
 import { Container, Box, Typography, TextField, Button, Grid, Card, CardContent, Chip, InputAdornment, Avatar, IconButton, Paper } from '@mui/material';
-import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users, ChevronLeft } from 'lucide-react';
+import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users, ChevronLeft, Bookmark } from 'lucide-react';
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -50,10 +50,12 @@ const Home = () => {
   ];
 
   const featuredJobs = [
-    { id: '1', company: 'Google', logo: 'G', logoColor: '#4285F4', title: 'Senior UX Designer', location: 'California', type: 'Full Time', salary: '$20k-$25k', featured: true },
-    { id: '2', company: 'Apple', logo: '', logoColor: '#000', title: 'Software Engineer', location: 'Cupertino', type: 'Part Time', salary: '$15k-$20k', remote: true },
-    { id: '3', company: 'Facebook', logo: 'f', logoColor: '#1877F2', title: 'Product Designer', location: 'New York', type: 'Full Time', salary: '$30k-$40k' },
-    { id: '4', company: 'Amazon', logo: 'A', logoColor: '#FF9900', title: 'Frontend Developer', location: 'Seattle', type: 'Remote', salary: '$25k-$35k', featured: true }
+    { id: '1', company: 'Google', logo: 'G', logoColor: '#4285F4', title: 'Senior UX Designer', location: 'California', type: 'Full Time', salary: '$20k-$25k' },
+    { id: '2', company: 'Apple', logo: '', logoColor: '#000', title: 'Software Engineer', location: 'Cupertino', type: 'Internship', salary: '$15k-$20k' },
+    { id: '3', company: 'Facebook', logo: 'f', logoColor: '#1877F2', title: 'Product Designer', location: 'New York', type: 'Part Time', salary: '$30k-$40k' },
+    { id: '4', company: 'Amazon', logo: 'A', logoColor: '#FF9900', title: 'Frontend Developer', location: 'Seattle', type: 'Full Time', salary: '$25k-$35k' },
+    { id: '5', company: 'Microsoft', logo: 'M', logoColor: '#00A4EF', title: 'Product Manager', location: 'Washington', type: 'Contract', salary: '$28k-$38k' },
+    { id: '6', company: 'Netflix', logo: 'N', logoColor: '#E50914', title: 'Data Analyst', location: 'Los Angeles', type: 'Full Time', salary: '$22k-$32k' }
   ];
 
   const companies = [
@@ -333,9 +335,10 @@ const Home = () => {
               sx={{ 
                 cursor: 'pointer',
                 transition: 'all 0.3s',
-                '&:hover': { boxShadow: 2 }
+                '&:hover': { boxShadow: 2 },
+                border: '1px solid #E5E7EB',
+                boxShadow: 'none'
               }}
-              onClick={() => navigate(`/job/${job.id}`)}
             >
               <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
@@ -354,14 +357,24 @@ const Home = () => {
                     }}>
                       {job.logo}
                     </Box>
-                    <Box>
+                    <Box sx={{ flex: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                           {job.title}
                         </Typography>
-                        {job.featured && <Chip label="Featured" size="small" sx={{ bgcolor: '#E7F0FA', color: '#0066FF', height: 20, fontSize: '0.7rem' }} />}
+                        <Chip 
+                          label={job.type} 
+                          size="small" 
+                          sx={{ 
+                            bgcolor: '#E7F0FA', 
+                            color: '#0066FF', 
+                            height: 20, 
+                            fontSize: '0.7rem',
+                            fontWeight: 500
+                          }} 
+                        />
                       </Box>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           {job.company}
                         </Typography>
@@ -375,17 +388,35 @@ const Home = () => {
                       </Box>
                     </Box>
                   </Box>
-                  <Button 
-                    variant="contained" 
-                    size="small" 
-                    sx={{ 
-                      bgcolor: '#0066FF', 
-                      '&:hover': { bgcolor: '#0052CC' },
-                      px: 3
-                    }}
-                  >
-                    Apply Now
-                  </Button>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <IconButton 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Handle bookmark logic
+                      }}
+                      sx={{ 
+                        border: '1px solid #E5E7EB',
+                        '&:hover': { bgcolor: '#E7F0FA', borderColor: '#0066FF' }
+                      }}
+                    >
+                      <Bookmark size={18} />
+                    </IconButton>
+                    <Button 
+                      variant="contained" 
+                      size="small" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/job/${job.id}`);
+                      }}
+                      sx={{ 
+                        bgcolor: '#0066FF', 
+                        '&:hover': { bgcolor: '#0052CC' },
+                        px: 3
+                      }}
+                    >
+                      Apply Now
+                    </Button>
+                  </Box>
                 </Box>
               </CardContent>
             </Card>
@@ -401,7 +432,7 @@ const Home = () => {
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
             <IconButton 
-              onClick={() => setCompanyIndex(Math.max(0, companyIndex - 4))}
+              onClick={() => setCompanyIndex(Math.max(0, companyIndex - 8))}
               disabled={companyIndex === 0}
               sx={{ 
                 bgcolor: '#E7F0FA', 
@@ -412,8 +443,8 @@ const Home = () => {
               <ChevronLeft size={20} color="#0066FF" />
             </IconButton>
             <IconButton 
-              onClick={() => setCompanyIndex(Math.min(companies.length - 4, companyIndex + 4))}
-              disabled={companyIndex >= companies.length - 4}
+              onClick={() => setCompanyIndex(Math.min(companies.length - 8, companyIndex + 8))}
+              disabled={companyIndex >= companies.length - 8}
               sx={{ 
                 bgcolor: '#E7F0FA', 
                 '&:hover': { bgcolor: '#D0E4F7' },
@@ -425,7 +456,7 @@ const Home = () => {
           </Box>
         </Box>
         <Grid container spacing={3}>
-          {companies.slice(companyIndex, companyIndex + 4).map((company, index) => (
+          {companies.slice(companyIndex, companyIndex + 8).map((company, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Card sx={{ 
                 border: '1px solid #E5E7EB',
