@@ -1,5 +1,6 @@
 import { Box, Container, Grid, TextField, Button, Typography, Checkbox, FormControlLabel, Select, MenuItem, FormControl, InputLabel, InputAdornment, IconButton, Divider } from '@mui/material';
-import { Briefcase, Eye, EyeOff, Facebook, ArrowRight } from 'lucide-react';
+import { Briefcase, Eye, EyeOff, Facebook, ArrowRight, Building } from 'lucide-react';
+import chessPattern from '@/assets/chess-pattern.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -171,53 +172,44 @@ const SignUp = () => {
         sx={{ 
           flex: { xs: '0', md: '0 0 55%' },
           display: { xs: 'none', md: 'flex' },
-          bgcolor: 'hsl(220, 40%, 15%)',
-          background: 'linear-gradient(135deg, hsl(220, 40%, 15%) 0%, hsl(220, 30%, 25%) 100%)',
+          bgcolor: '#1e293b',
           color: 'white',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'flex-end',
           alignItems: 'center',
           p: 6,
           position: 'relative',
           overflow: 'hidden'
         }}
       >
-        {/* Decorative Pattern */}
+        {/* Checkerboard Pattern */}
         <Box 
           sx={{ 
             position: 'absolute',
             top: 0,
-            right: 0,
+            left: 0,
             width: '100%',
             height: '100%',
-            opacity: 0.1,
-            background: `
-              repeating-linear-gradient(
-                0deg,
-                hsl(220, 30%, 25%) 0px,
-                hsl(220, 30%, 25%) 100px,
-                hsl(220, 40%, 15%) 100px,
-                hsl(220, 40%, 15%) 200px
-              ),
-              repeating-linear-gradient(
-                90deg,
-                hsl(220, 30%, 25%) 0px,
-                hsl(220, 30%, 25%) 100px,
-                hsl(220, 40%, 15%) 100px,
-                hsl(220, 40%, 15%) 200px
-              )
-            `
+            backgroundImage: `url(${chessPattern})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.15
           }}
         />
 
-        <Box sx={{ textAlign: 'center', zIndex: 1, maxWidth: 600 }}>
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
+        <Box sx={{ textAlign: 'center', zIndex: 1, maxWidth: 600, pb: 8 }}>
+          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, lineHeight: 1.3 }}>
             Over 1,75,324 candidates waiting for good employees.
           </Typography>
 
-          <Grid container spacing={4} sx={{ mt: 4 }}>
+          <Grid container spacing={4}>
             <Grid item xs={4}>
-              <Box sx={{ textAlign: 'center' }}>
+              <Box sx={{ 
+                textAlign: 'center',
+                bgcolor: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: 2,
+                p: 3
+              }}>
                 <Briefcase size={40} style={{ marginBottom: 16 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   1,75,324
@@ -228,8 +220,13 @@ const SignUp = () => {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Briefcase size={40} style={{ marginBottom: 16 }} />
+              <Box sx={{ 
+                textAlign: 'center',
+                bgcolor: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: 2,
+                p: 3
+              }}>
+                <Building size={40} style={{ marginBottom: 16 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   97,354
                 </Typography>
@@ -239,7 +236,12 @@ const SignUp = () => {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              <Box sx={{ textAlign: 'center' }}>
+              <Box sx={{ 
+                textAlign: 'center',
+                bgcolor: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: 2,
+                p: 3
+              }}>
                 <Briefcase size={40} style={{ marginBottom: 16 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   7,532
