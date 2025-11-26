@@ -1,10 +1,10 @@
 import { Container, Grid, Box, Typography, Link as MuiLink, IconButton } from '@mui/material';
-import { Briefcase, Facebook, Youtube, Instagram, Twitter } from 'lucide-react';
+import { Briefcase, Facebook, Youtube, Instagram, Twitter, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <Box component="footer" sx={{ bgcolor: 'hsl(220, 40%, 15%)', color: 'white', pt: 8, pb: 4, mt: 8 }}>
+    <Box component="footer" sx={{ bgcolor: '#18191C', color: 'white', pt: 8, pb: 4, mt: 8 }}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Logo and Description */}
@@ -15,10 +15,10 @@ const Footer = () => {
                 MyJob
               </Typography>
             </Box>
-            <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255,255,255,0.7)' }}>
-              Call now: (319) 555-0115
+            <Typography variant="body2" sx={{ mb: 2, color: '#FFFFFF' }}>
+              Call now: <span style={{ color: '#767F8C' }}>(319) 555-0115</span>
             </Typography>
-            <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+            <Typography variant="body2" sx={{ color: '#767F8C', lineHeight: 1.6 }}>
               6391 Elgin St. Celina, Delaware 10299, New York, United States of America
             </Typography>
           </Grid>
@@ -28,15 +28,21 @@ const Footer = () => {
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem', fontWeight: 600 }}>
               Quick Link
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <MuiLink component={Link} to="/" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <MuiLink component={Link} to="/" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 About
               </MuiLink>
-              <MuiLink component={Link} to="/find-job" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
-                Get Membership
+              <MuiLink component={Link} to="/find-job" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <ChevronRight size={16} />
+                  Contact
+                </Box>
               </MuiLink>
-              <MuiLink component={Link} to="/" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
-                Post a Job
+              <MuiLink component={Link} to="/" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
+                Pricing
+              </MuiLink>
+              <MuiLink component={Link} to="/" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
+                Blog
               </MuiLink>
             </Box>
           </Grid>
@@ -46,17 +52,17 @@ const Footer = () => {
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem', fontWeight: 600 }}>
               Candidate
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Browse Jobs
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Browse Employers
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Candidate Dashboard
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Saved Jobs
               </MuiLink>
             </Box>
@@ -67,17 +73,17 @@ const Footer = () => {
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem', fontWeight: 600 }}>
               Employers
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Post a Job
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Browse Candidates
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Employers Dashboard
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Applications
               </MuiLink>
             </Box>
@@ -88,14 +94,14 @@ const Footer = () => {
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem', fontWeight: 600 }}>
               Support
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
-                FAQs
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
+                Faqs
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Privacy Policy
               </MuiLink>
-              <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+              <MuiLink href="#" sx={{ color: '#767F8C', textDecoration: 'none', '&:hover': { color: '#0066FF' } }}>
                 Terms & Conditions
               </MuiLink>
             </Box>
@@ -103,21 +109,21 @@ const Footer = () => {
         </Grid>
 
         {/* Bottom */}
-        <Box sx={{ mt: 6, pt: 4, borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+        <Box sx={{ mt: 6, pt: 4, borderTop: '1px solid #2D3034', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+          <Typography variant="body2" sx={{ color: '#767F8C' }}>
             © 2024 MyJob - Job Portal. All rights Reserved
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <IconButton size="small" sx={{ color: 'rgba(255,255,255,0.7)', '&:hover': { color: 'white' } }}>
+            <IconButton size="small" sx={{ color: '#767F8C', '&:hover': { color: '#0066FF', bgcolor: '#1E2125' } }}>
               <Facebook size={20} />
             </IconButton>
-            <IconButton size="small" sx={{ color: 'rgba(255,255,255,0.7)', '&:hover': { color: 'white' } }}>
+            <IconButton size="small" sx={{ color: '#767F8C', '&:hover': { color: '#0066FF', bgcolor: '#1E2125' } }}>
               <Youtube size={20} />
             </IconButton>
-            <IconButton size="small" sx={{ color: 'rgba(255,255,255,0.7)', '&:hover': { color: 'white' } }}>
+            <IconButton size="small" sx={{ color: '#767F8C', '&:hover': { color: '#0066FF', bgcolor: '#1E2125' } }}>
               <Instagram size={20} />
             </IconButton>
-            <IconButton size="small" sx={{ color: 'rgba(255,255,255,0.7)', '&:hover': { color: 'white' } }}>
+            <IconButton size="small" sx={{ color: '#767F8C', '&:hover': { color: '#0066FF', bgcolor: '#1E2125' } }}>
               <Twitter size={20} />
             </IconButton>
           </Box>
