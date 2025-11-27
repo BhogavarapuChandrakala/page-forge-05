@@ -202,12 +202,7 @@ const SignUp = () => {
 
           <Grid container spacing={4}>
             <Grid item xs={4}>
-              <Box sx={{ 
-                textAlign: 'center',
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
-                p: 3
-              }}>
+              <Box sx={{ textAlign: 'center' }}>
                 <Briefcase size={40} style={{ marginBottom: 16 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   1,75,324
@@ -218,12 +213,7 @@ const SignUp = () => {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              <Box sx={{ 
-                textAlign: 'center',
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
-                p: 3
-              }}>
+              <Box sx={{ textAlign: 'center' }}>
                 <Building size={40} style={{ marginBottom: 16 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   97,354
@@ -234,12 +224,7 @@ const SignUp = () => {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              <Box sx={{ 
-                textAlign: 'center',
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
-                p: 3
-              }}>
+              <Box sx={{ textAlign: 'center' }}>
                 <Briefcase size={40} style={{ marginBottom: 16 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   7,532
