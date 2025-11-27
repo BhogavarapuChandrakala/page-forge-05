@@ -1,5 +1,5 @@
-import { Card, CardContent, Box, Typography, Chip, IconButton, Button } from '@mui/material';
-import { MapPin, Clock, Bookmark, ArrowRight } from 'lucide-react';
+import { Card, CardContent, Box, Typography, Chip, Button } from '@mui/material';
+import { MapPin, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface JobCardProps {
@@ -13,10 +13,9 @@ interface JobCardProps {
   salary: string;
   featured?: boolean;
   remote?: boolean;
-  daysRemaining?: number;
 }
 
-const JobCard = ({ id, company, logo, logoColor, title, location, type, salary, featured, remote, daysRemaining }: JobCardProps) => {
+const JobCard = ({ id, company, logo, logoColor, title, location, type, salary, featured, remote }: JobCardProps) => {
   const navigate = useNavigate();
 
   return (
@@ -68,9 +67,6 @@ const JobCard = ({ id, company, logo, logoColor, title, location, type, salary, 
               </Typography>
             </Box>
           </Box>
-          <IconButton size="small">
-            <Bookmark size={18} />
-          </IconButton>
         </Box>
 
         <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
@@ -78,17 +74,9 @@ const JobCard = ({ id, company, logo, logoColor, title, location, type, salary, 
         </Typography>
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Box>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {type} • {salary}
-            </Typography>
-            {daysRemaining && (
-              <Typography variant="body2" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>
-                <Clock size={14} />
-                {daysRemaining} Days Remaining
-              </Typography>
-            )}
-          </Box>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {type} • {salary}
+          </Typography>
           <Button 
             variant="outlined"
             size="small"

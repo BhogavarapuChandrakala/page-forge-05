@@ -1,5 +1,6 @@
-import { Container, Box, Typography, TextField, Button, Chip, Select, MenuItem, FormControl, InputLabel, Card, CardContent, IconButton, Dialog, DialogTitle, DialogContent, RadioGroup, FormControlLabel, Radio, Checkbox, Grid, ToggleButtonGroup, ToggleButton, InputAdornment } from '@mui/material';
-import { Search, MapPin, Layers, Filter, Grid3x3, List, Bookmark, ArrowRight, Clock, X } from 'lucide-react';
+import { Container, Box, Typography, TextField, Button, Chip, Select, MenuItem, FormControl, InputLabel, Card, CardContent, Dialog, DialogTitle, DialogContent, RadioGroup, FormControlLabel, Radio, Checkbox, Grid, ToggleButtonGroup, ToggleButton, InputAdornment } from '@mui/material';
+import { Instagram, Facebook, Twitter, Microsoft, Reddit, YouTube, Tag } from '@mui/icons-material';
+import { Search, MapPin, Layers, Filter, Grid3x3, List } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
@@ -9,6 +10,7 @@ const FindJob = () => {
   const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filterOpen, setFilterOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedFilters, setSelectedFilters] = useState({
     keywords: '',
     location: '',
@@ -20,20 +22,35 @@ const FindJob = () => {
     jobLevel: 'mid-level'
   });
 
+  const getCompanyIcon = (company: string) => {
+    const iconProps = { sx: { fontSize: 40, color: 'white' } };
+    switch(company.toLowerCase()) {
+      case 'instagram': return <Instagram {...iconProps} />;
+      case 'facebook': return <Facebook {...iconProps} />;
+      case 'twitter': return <Twitter {...iconProps} />;
+      case 'microsoft': return <Microsoft {...iconProps} />;
+      case 'reddit': return <Reddit {...iconProps} />;
+      case 'youtube': return <YouTube {...iconProps} />;
+      default: return company.charAt(0).toUpperCase();
+    }
+  };
+
   const jobs = [
-    { id: '1', company: 'Reddit', logo: '🔴', logoColor: '#FF4500', title: 'Marketing Officer', location: 'United Kingdom of Great Britain', type: 'Full Time', salary: '$20k-$25k', featured: true, daysRemaining: 4 },
-    { id: '2', company: 'Dribbble', logo: '🎨', logoColor: '#EA4C89', title: 'Junior UX Designer', location: 'California', type: 'Full-Time', salary: '$50k-$60k/month', featured: true, remote: true, daysRemaining: 4 },
-    { id: '3', company: 'Freepik', logo: '📷', logoColor: '#0077B5', title: 'Visual Designer', location: 'China', type: 'Full Time', salary: '$10k-$15k', featured: true, daysRemaining: 3 },
-    { id: '4', company: 'Figma', logo: '🎨', logoColor: '#F24E1E', title: 'UI/UX Designer', location: 'Canada', type: 'Full Time', salary: '$50k-$70k', featured: true, daysRemaining: 5 },
-    { id: '5', company: 'Dribbble', logo: '🎨', logoColor: '#EA4C89', title: 'Junior Graphic Designer', location: 'United States', type: 'Temporary', salary: '$35k-$40k', remote: true, daysRemaining: 4 },
-    { id: '6', company: 'Twitter', logo: '🐦', logoColor: '#1DA1F2', title: 'Senior UX Designer', location: 'Canada', type: 'Internship', salary: '$50k-$60k', daysRemaining: 3 },
-    { id: '7', company: 'Microsoft', logo: '🪟', logoColor: '#00A4EF', title: 'Product Designer', location: 'Australia', type: 'Full Time', salary: '$40k-$50k', daysRemaining: 6 },
-    { id: '8', company: 'Upwork', logo: '⬆️', logoColor: '#6FDA44', title: 'Technical Support Specialist', location: 'France', type: 'Full Time', salary: '$35k-$40k', daysRemaining: 4 },
-    { id: '9', company: 'Slack', logo: '💬', logoColor: '#4A154B', title: 'Networking Engineer', location: 'Germany', type: 'Remote', salary: '$50k-$90k', daysRemaining: 2 },
-    { id: '10', company: 'Instagram', logo: '📸', logoColor: '#E4405F', title: 'Front End Developer', location: 'Australia', type: 'Contract Base', salary: '$50k-$80k', daysRemaining: 3 },
-    { id: '11', company: 'Facebook', logo: '👍', logoColor: '#1877F2', title: 'Software Engineer', location: 'United Kingdom of Great Britain', type: 'Part Time', salary: '$15k-$20k', daysRemaining: 4 },
-    { id: '12', company: 'Youtube', logo: '▶️', logoColor: '#FF0000', title: 'Interaction Designer', location: 'Germany', type: 'Full Time', salary: '$20k-$25k', daysRemaining: 5 }
+    { id: '1', company: 'Reddit', logoColor: '#FF4500', title: 'Marketing Officer', location: 'United Kingdom of Great Britain', type: 'Full Time', salary: '$20k-$25k', featured: true },
+    { id: '2', company: 'Dribbble', logoColor: '#EA4C89', title: 'Junior UX Designer', location: 'California', type: 'Full-Time', salary: '$50k-$60k/month', featured: true, remote: true },
+    { id: '3', company: 'Freepik', logoColor: '#0077B5', title: 'Visual Designer', location: 'China', type: 'Full Time', salary: '$10k-$15k', featured: true },
+    { id: '4', company: 'Figma', logoColor: '#F24E1E', title: 'UI/UX Designer', location: 'Canada', type: 'Full Time', salary: '$50k-$70k', featured: true },
+    { id: '5', company: 'Dribbble', logoColor: '#EA4C89', title: 'Junior Graphic Designer', location: 'United States', type: 'Temporary', salary: '$35k-$40k', remote: true },
+    { id: '6', company: 'Twitter', logoColor: '#1DA1F2', title: 'Senior UX Designer', location: 'Canada', type: 'Internship', salary: '$50k-$60k' },
+    { id: '7', company: 'Microsoft', logoColor: '#00A4EF', title: 'Product Designer', location: 'Australia', type: 'Full Time', salary: '$40k-$50k' },
+    { id: '8', company: 'Upwork', logoColor: '#6FDA44', title: 'Technical Support Specialist', location: 'France', type: 'Full Time', salary: '$35k-$40k' },
+    { id: '9', company: 'Slack', logoColor: '#4A154B', title: 'Networking Engineer', location: 'Germany', type: 'Remote', salary: '$50k-$90k' },
+    { id: '10', company: 'Instagram', logoColor: '#E4405F', title: 'Front End Developer', location: 'Australia', type: 'Contract Base', salary: '$50k-$80k' },
+    { id: '11', company: 'Facebook', logoColor: '#1877F2', title: 'Software Engineer', location: 'United Kingdom of Great Britain', type: 'Part Time', salary: '$15k-$20k' },
+    { id: '12', company: 'Youtube', logoColor: '#FF0000', title: 'Interaction Designer', location: 'Germany', type: 'Full Time', salary: '$20k-$25k' }
   ];
+
+  const totalPages = 5;
 
   return (
     <Box>
@@ -181,7 +198,22 @@ const FindJob = () => {
                   <CardContent sx={{ p: 3 }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                       <Box sx={{ display: 'flex', gap: 2 }}>
-                        <Box sx={{ fontSize: '2rem' }}>{job.logo}</Box>
+                        <Box 
+                          sx={{ 
+                            width: 56, 
+                            height: 56, 
+                            borderRadius: 1, 
+                            bgcolor: job.logoColor,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontWeight: 600,
+                            fontSize: '1.5rem'
+                          }}
+                        >
+                          {getCompanyIcon(job.company)}
+                        </Box>
                         <Box>
                           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 0.5 }}>
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -197,26 +229,15 @@ const FindJob = () => {
                           </Typography>
                         </Box>
                       </Box>
-                      <IconButton size="small">
-                        <Bookmark size={18} />
-                      </IconButton>
                     </Box>
 
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
                       {job.title}
                     </Typography>
 
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <Box>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                          {job.type} • {job.salary}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>
-                          <Clock size={14} />
-                          {job.daysRemaining} Days Remaining
-                        </Typography>
-                      </Box>
-                    </Box>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      {job.type} • {job.salary}
+                    </Typography>
                   </CardContent>
                 </Card>
               </Grid>
@@ -239,7 +260,22 @@ const FindJob = () => {
                 <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Box sx={{ display: 'flex', gap: 2, flex: 1 }}>
-                      <Box sx={{ fontSize: '2.5rem' }}>{job.logo}</Box>
+                      <Box 
+                        sx={{ 
+                          width: 64, 
+                          height: 64, 
+                          borderRadius: 1, 
+                          bgcolor: job.logoColor,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontWeight: 600,
+                          fontSize: '1.75rem'
+                        }}
+                      >
+                        {getCompanyIcon(job.company)}
+                      </Box>
                       <Box sx={{ flex: 1 }}>
                         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 0.5 }}>
                           <Typography variant="h6" sx={{ fontWeight: 600 }}>
@@ -254,18 +290,13 @@ const FindJob = () => {
                         </Box>
                         <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
                           <MapPin size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                          {job.location} • {job.salary} • <Clock size={14} style={{ display: 'inline', verticalAlign: 'middle', margin: '0 4px' }} />{job.daysRemaining} Days Remaining
+                          {job.location} • {job.salary}
                         </Typography>
                       </Box>
                     </Box>
-                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                      <IconButton size="small">
-                        <Bookmark size={20} />
-                      </IconButton>
-                      <Button variant="outlined" endIcon={<ArrowRight size={16} />}>
-                        Apply Now
-                      </Button>
-                    </Box>
+                    <Button variant="outlined">
+                      Apply Now
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>
@@ -275,13 +306,32 @@ const FindJob = () => {
 
         {/* Pagination */}
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 4 }}>
-          <Button variant="outlined" size="small">Previous</Button>
-          <Button variant="contained" size="small">01</Button>
-          <Button variant="outlined" size="small">02</Button>
-          <Button variant="outlined" size="small">03</Button>
-          <Button variant="outlined" size="small">04</Button>
-          <Button variant="outlined" size="small">05</Button>
-          <Button variant="outlined" size="small">Next</Button>
+          <Button 
+            variant="outlined" 
+            size="small"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          >
+            Previous
+          </Button>
+          {[1, 2, 3, 4, 5].map(page => (
+            <Button 
+              key={page}
+              variant={currentPage === page ? "contained" : "outlined"}
+              size="small"
+              onClick={() => setCurrentPage(page)}
+            >
+              {String(page).padStart(2, '0')}
+            </Button>
+          ))}
+          <Button 
+            variant="outlined" 
+            size="small"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          >
+            Next
+          </Button>
         </Box>
       </Container>
 
