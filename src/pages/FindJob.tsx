@@ -2,7 +2,6 @@ import { Container, Box, Typography, TextField, Button, Chip, Select, MenuItem, 
 import { Instagram, Facebook, Twitter, Microsoft, Reddit, YouTube, Tag } from '@mui/icons-material';
 import { Search, MapPin, Layers, Filter, Grid3x3, List } from 'lucide-react';
 import AuthHeader from '@/components/AuthHeader';
-import Footer from '@/components/Footer';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -426,8 +425,6 @@ const FindJob = () => {
           </Grid>
         </DialogContent>
       </Dialog>
-
-      <Footer />
     </Box>
   );
 };
