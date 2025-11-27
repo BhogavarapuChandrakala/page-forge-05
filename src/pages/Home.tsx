@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
-import jobIllustration from '@/assets/job-illustration.jpeg';
+import homeImage from '@/assets/home_image.svg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -140,7 +140,7 @@ const Home = () => {
             <Grid item xs={12} md={6}>
               <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img 
-                  src={jobIllustration} 
+                  src={homeImage} 
                   alt="Job Portal Illustration" 
                   style={{ maxWidth: '100%', height: 'auto' }}
                 />
