@@ -1,7 +1,7 @@
 import { Container, Box, Typography, TextField, Button, Chip, Select, MenuItem, FormControl, InputLabel, Card, CardContent, Dialog, DialogTitle, DialogContent, RadioGroup, FormControlLabel, Radio, Checkbox, Grid, ToggleButtonGroup, ToggleButton, InputAdornment } from '@mui/material';
 import { Instagram, Facebook, Twitter, Microsoft, Reddit, YouTube, Tag } from '@mui/icons-material';
 import { Search, MapPin, Layers, Filter, Grid3x3, List } from 'lucide-react';
-import Header from '@/components/Header';
+import AuthHeader from '@/components/AuthHeader';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -54,7 +54,7 @@ const FindJob = () => {
 
   return (
     <Box>
-      <Header />
+      <AuthHeader />
       
       <Box sx={{ bgcolor: 'hsl(220, 40%, 98%)', py: 6 }}>
         <Container maxWidth="lg">
