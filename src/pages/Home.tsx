@@ -1,6 +1,21 @@
 import { Container, Box, Typography, TextField, Button, Grid, Card, CardContent, Chip, InputAdornment, Avatar, IconButton, Paper } from '@mui/material';
 import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users, ChevronLeft, Bookmark } from 'lucide-react';
-import { Facebook, Twitter, Instagram, YouTube, Reddit, Apple as AppleIcon } from '@mui/icons-material';
+import { 
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  YouTube, 
+  Reddit, 
+  Apple as AppleIcon,
+  Brush,
+  Code,
+  Campaign,
+  OndemandVideo,
+  MusicNote,
+  ShowChart,
+  MedicalServices,
+  Storage
+} from '@mui/icons-material';
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -99,14 +114,14 @@ const Home = () => {
   ];
 
   const categories = [
-    { icon: <Layers size={24} />, title: 'Graphics & Design', openings: '357 Open position' },
-    { icon: <Briefcase size={24} />, title: 'Code & Programing', openings: '312 Open position' },
-    { icon: <Building2 size={24} />, title: 'Digital Marketing', openings: '297 Open position' },
-    { icon: <FileText size={24} />, title: 'Video & Animation', openings: '247 Open position' },
-    { icon: <Search size={24} />, title: 'Music & Audio', openings: '204 Open position' },
-    { icon: <Users size={24} />, title: 'Account & Finance', openings: '167 Open position' },
-    { icon: <UserCheck size={24} />, title: 'Health & Care', openings: '151 Open position' },
-    { icon: <Clock size={24} />, title: 'Data & Science', openings: '107 Open position' }
+    { icon: <Brush sx={{ fontSize: 24 }} />, title: 'Graphics & Design', openings: '357 Open position' },
+    { icon: <Code sx={{ fontSize: 24 }} />, title: 'Code & Programing', openings: '312 Open position' },
+    { icon: <Campaign sx={{ fontSize: 24 }} />, title: 'Digital Marketing', openings: '297 Open position' },
+    { icon: <OndemandVideo sx={{ fontSize: 24 }} />, title: 'Video & Animation', openings: '247 Open position' },
+    { icon: <MusicNote sx={{ fontSize: 24 }} />, title: 'Music & Audio', openings: '204 Open position' },
+    { icon: <ShowChart sx={{ fontSize: 24 }} />, title: 'Account & Finance', openings: '167 Open position' },
+    { icon: <MedicalServices sx={{ fontSize: 24 }} />, title: 'Health & Care', openings: '151 Open position' },
+    { icon: <Storage sx={{ fontSize: 24 }} />, title: 'Data & Science', openings: '107 Open position' }
   ];
 
   const featuredJobs = [
