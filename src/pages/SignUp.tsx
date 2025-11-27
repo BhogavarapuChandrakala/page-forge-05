@@ -172,30 +172,28 @@ const SignUp = () => {
         sx={{ 
           flex: { xs: '0', md: '0 0 55%' },
           display: { xs: 'none', md: 'flex' },
-          bgcolor: '#1e293b',
+          backgroundImage: `url(${chessPattern})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           color: 'white',
           flexDirection: 'column',
           justifyContent: 'flex-end',
           alignItems: 'center',
           p: 6,
           position: 'relative',
-          overflow: 'hidden'
-        }}
-      >
-        {/* Checkerboard Pattern */}
-        <Box 
-          sx={{ 
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
             position: 'absolute',
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: `url(${chessPattern})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.15
-          }}
-        />
+            right: 0,
+            bottom: 0,
+            bgcolor: 'rgba(30, 41, 59, 0.85)',
+            zIndex: 0
+          }
+        }}
+      >
 
         <Box sx={{ textAlign: 'center', zIndex: 1, maxWidth: 600, pb: 8 }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 6, lineHeight: 1.3 }}>
