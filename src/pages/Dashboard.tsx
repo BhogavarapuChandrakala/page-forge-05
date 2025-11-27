@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
+import AuthHeader from '@/components/AuthHeader';
 import Footer from '@/components/Footer';
 import {
   Box,
@@ -52,7 +52,7 @@ const Dashboard = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      <AuthHeader />
 
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Grid container spacing={3}>

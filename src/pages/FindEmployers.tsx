@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
+import AuthHeader from '@/components/AuthHeader';
 import Footer from '@/components/Footer';
 import {
   Box,
@@ -71,7 +71,7 @@ const FindEmployers = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      <AuthHeader />
       
       <Box sx={{ bgcolor: 'grey.50', py: 3, borderBottom: 1, borderColor: 'grey.200' }}>
         <Container maxWidth="lg">
