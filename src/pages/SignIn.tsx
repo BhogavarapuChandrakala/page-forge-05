@@ -149,12 +149,7 @@ const SignIn = () => {
 
           <Grid container spacing={4}>
             <Grid item xs={4}>
-              <Box sx={{ 
-                textAlign: 'center',
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
-                p: 3
-              }}>
+              <Box sx={{ textAlign: 'center' }}>
                 <Work sx={{ fontSize: 40, mb: 2 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   1,75,324
@@ -165,12 +160,7 @@ const SignIn = () => {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              <Box sx={{ 
-                textAlign: 'center',
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
-                p: 3
-              }}>
+              <Box sx={{ textAlign: 'center' }}>
                 <Business sx={{ fontSize: 40, mb: 2 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   97,354
@@ -181,12 +171,7 @@ const SignIn = () => {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              <Box sx={{ 
-                textAlign: 'center',
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
-                p: 3
-              }}>
+              <Box sx={{ textAlign: 'center' }}>
                 <Work sx={{ fontSize: 40, mb: 2 }} />
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
                   7,532
