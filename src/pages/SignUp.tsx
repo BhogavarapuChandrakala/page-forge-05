@@ -198,7 +198,7 @@ const SignUp = () => {
         />
 
         <Box sx={{ textAlign: 'center', zIndex: 1, maxWidth: 600, pb: 8 }}>
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, lineHeight: 1.3 }}>
+          <Typography variant="h5" sx={{ fontWeight: 700, mb: 6, lineHeight: 1.3 }}>
             Over 1,75,324 candidates waiting for good employees.
           </Typography>
 
