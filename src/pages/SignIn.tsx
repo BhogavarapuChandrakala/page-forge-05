@@ -1,9 +1,11 @@
-import { Box, Container, TextField, Button, Typography, Checkbox, FormControlLabel, InputAdornment, IconButton, Divider, Grid } from '@mui/material';
-import { Work, Business } from '@mui/icons-material';
-import { Briefcase, Eye, EyeOff, Facebook, ArrowRight } from 'lucide-react';
+import { Box, Container, TextField, Button, Typography, Checkbox, FormControlLabel, InputAdornment, IconButton, Divider, Grid, AppBar, Toolbar, Select, MenuItem } from '@mui/material';
+import { Work, Business, Phone, Notifications } from '@mui/icons-material';
+import { Briefcase, Eye, EyeOff, Facebook, ArrowRight, Search, Bell } from 'lucide-react';
 import chessPattern from '@/assets/chess-pattern.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -20,16 +22,107 @@ const SignIn = () => {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex' }}>
+    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Navigation Header */}
+      <Box>
+        {/* Top Navigation Bar */}
+        <Box sx={{ bgcolor: '#F7F7F8', borderBottom: '1px solid #E5E7EB' }}>
+          <Container maxWidth="xl">
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1.5 }}>
+              <Box sx={{ display: 'flex', gap: 4 }}>
+                <Link to="/" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Home</Link>
+                <Link to="/find-job" style={{ textDecoration: 'none', color: '#0066FF', fontSize: '0.875rem', fontWeight: 600, borderBottom: '2px solid #0066FF', paddingBottom: '4px' }}>Find Job</Link>
+                <Link to="/find-employers" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Find Employers</Link>
+                <Link to="/dashboard" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Dashboard</Link>
+                <Link to="/job-alerts" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Job Alerts</Link>
+                <Link to="/customer-supports" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Customer Supports</Link>
+              </Box>
+              <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Phone sx={{ fontSize: 18, color: '#6B7280' }} />
+                  <Typography variant="body2" sx={{ color: '#6B7280' }}>+1-202-555-0178</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Typography sx={{ fontSize: '1.2rem' }}>🇺🇸</Typography>
+                  <Select
+                    value="English"
+                    size="small"
+                    sx={{ fontSize: '0.875rem', border: 'none', '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
+                  >
+                    <MenuItem value="English">English</MenuItem>
+                  </Select>
+                </Box>
+              </Box>
+            </Box>
+          </Container>
+        </Box>
+
+        {/* Main App Bar */}
+        <Box sx={{ bgcolor: 'white', borderBottom: '1px solid #E5E7EB', py: 2 }}>
+          <Container maxWidth="xl">
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Briefcase size={28} color="#0066FF" />
+                  <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                    MyJob
+                  </Typography>
+                </Link>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Typography sx={{ fontSize: '1.2rem' }}>🇮🇳</Typography>
+                  <Select
+                    value="India"
+                    size="small"
+                    sx={{ fontSize: '0.875rem' }}
+                  >
+                    <MenuItem value="India">India</MenuItem>
+                  </Select>
+                </Box>
+              </Box>
+
+              <Box sx={{ flex: 1, maxWidth: 600, mx: 4 }}>
+                <TextField
+                  fullWidth
+                  placeholder="Job title, keyword, company"
+                  size="small"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search size={20} color="#9CA3AF" />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <IconButton sx={{ position: 'relative' }}>
+                  <Bell size={24} />
+                  <Box sx={{
+                    position: 'absolute',
+                    top: 8,
+                    right: 8,
+                    width: 8,
+                    height: 8,
+                    bgcolor: '#EF4444',
+                    borderRadius: '50%'
+                  }} />
+                </IconButton>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+              </Box>
+            </Box>
+          </Container>
+        </Box>
+      </Box>
+
+      {/* Main Content */}
+      <Box sx={{ display: 'flex', flex: 1 }}>
       {/* Left Side - Form */}
       <Box sx={{ flex: { xs: '1', md: '0 0 45%' }, bgcolor: 'white', display: 'flex', alignItems: 'center', py: 4 }}>
         <Container maxWidth="sm">
-          <Link to="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
-            <Briefcase size={28} color="#0066FF" />
-            <Typography variant="h6" sx={{ color: 'foreground', fontWeight: 600 }}>
-              MyJob
-            </Typography>
-          </Link>
 
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
             Sign in
@@ -183,6 +276,7 @@ const SignIn = () => {
             </Grid>
           </Grid>
         </Box>
+      </Box>
       </Box>
     </Box>
   );
