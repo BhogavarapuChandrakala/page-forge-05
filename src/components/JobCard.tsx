@@ -1,5 +1,6 @@
 import { Card, CardContent, Box, Typography, Chip, Button } from '@mui/material';
 import { MapPin, ArrowRight } from 'lucide-react';
+import { Facebook, Twitter, Instagram, YouTube, Reddit, Apple as AppleIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 interface JobCardProps {
@@ -17,6 +18,65 @@ interface JobCardProps {
 
 const JobCard = ({ id, company, logo, logoColor, title, location, type, salary, featured, remote }: JobCardProps) => {
   const navigate = useNavigate();
+
+  const getCompanyIcon = () => {
+    const iconProps = { sx: { fontSize: 32, color: 'white' } };
+    const companyLower = company.toLowerCase();
+    
+    if (companyLower.includes('netflix')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>N</Box>;
+    } else if (companyLower.includes('figma')) {
+      return (
+        <Box sx={{ display: 'flex', gap: 0.3, alignItems: 'center' }}>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#F24E1E' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#FF7262' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#A259FF' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#1ABCFE' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#0ACF83' }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('google')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>G</Box>;
+    } else if (companyLower.includes('apple')) {
+      return <AppleIcon {...iconProps} />;
+    } else if (companyLower.includes('facebook')) {
+      return <Facebook {...iconProps} />;
+    } else if (companyLower.includes('amazon')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white', display: 'flex', alignItems: 'center' }}>
+        <Box component="span">a</Box>
+        <Box component="span" sx={{ fontSize: '1rem', mb: -1 }}>↗</Box>
+      </Box>;
+    } else if (companyLower.includes('microsoft')) {
+      return (
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5, width: 24, height: 24 }}>
+          <Box sx={{ bgcolor: '#F25022', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#7FBA00', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#00A4EF', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#FFB900', width: 11, height: 11 }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('dribbble')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>⛹</Box>;
+    } else if (companyLower.includes('upwork')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>ᑌ</Box>;
+    } else if (companyLower.includes('slack')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>#</Box>;
+    } else if (companyLower.includes('freepik')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>F</Box>;
+    } else if (companyLower.includes('twitter')) {
+      return <Twitter {...iconProps} />;
+    } else if (companyLower.includes('instagram')) {
+      return <Instagram {...iconProps} />;
+    } else if (companyLower.includes('reddit')) {
+      return <Reddit {...iconProps} />;
+    } else if (companyLower.includes('youtube')) {
+      return <YouTube {...iconProps} />;
+    } else if (companyLower.includes('adobe')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>Ae</Box>;
+    }
+    
+    return logo || company.charAt(0).toUpperCase();
+  };
 
   return (
     <Card 
@@ -47,7 +107,7 @@ const JobCard = ({ id, company, logo, logoColor, title, location, type, salary, 
                 fontSize: '1.25rem'
               }}
             >
-              {logo}
+              {getCompanyIcon()}
             </Box>
             <Box>
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 0.5 }}>

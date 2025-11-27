@@ -1,5 +1,6 @@
 import { Container, Box, Typography, TextField, Button, Grid, Card, CardContent, Chip, InputAdornment, Avatar, IconButton, Paper } from '@mui/material';
 import { Search, MapPin, Layers, Briefcase, Building2, FileText, UserCheck, Clock, ChevronRight, Star, Users, ChevronLeft, Bookmark } from 'lucide-react';
+import { Facebook, Twitter, Instagram, YouTube, Reddit, Apple as AppleIcon } from '@mui/icons-material';
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,6 +9,65 @@ import homeImage from '@/assets/home_image.svg';
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const getCompanyIcon = (company: string) => {
+    const iconProps = { sx: { fontSize: 28, color: 'white' } };
+    const companyLower = company.toLowerCase();
+    
+    if (companyLower.includes('netflix')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>N</Box>;
+    } else if (companyLower.includes('figma')) {
+      return (
+        <Box sx={{ display: 'flex', gap: 0.3, alignItems: 'center' }}>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#F24E1E' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#FF7262' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#A259FF' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#1ABCFE' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#0ACF83' }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('google')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>G</Box>;
+    } else if (companyLower.includes('apple')) {
+      return <AppleIcon {...iconProps} />;
+    } else if (companyLower.includes('facebook')) {
+      return <Facebook {...iconProps} />;
+    } else if (companyLower.includes('amazon')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white', display: 'flex', alignItems: 'center' }}>
+        <Box component="span">a</Box>
+        <Box component="span" sx={{ fontSize: '1rem', mb: -1 }}>↗</Box>
+      </Box>;
+    } else if (companyLower.includes('microsoft')) {
+      return (
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5, width: 24, height: 24 }}>
+          <Box sx={{ bgcolor: '#F25022', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#7FBA00', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#00A4EF', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#FFB900', width: 11, height: 11 }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('dribbble')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>⛹</Box>;
+    } else if (companyLower.includes('upwork')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>ᑌ</Box>;
+    } else if (companyLower.includes('slack')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>#</Box>;
+    } else if (companyLower.includes('freepik')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>F</Box>;
+    } else if (companyLower.includes('twitter')) {
+      return <Twitter {...iconProps} />;
+    } else if (companyLower.includes('instagram')) {
+      return <Instagram {...iconProps} />;
+    } else if (companyLower.includes('reddit')) {
+      return <Reddit {...iconProps} />;
+    } else if (companyLower.includes('youtube')) {
+      return <YouTube {...iconProps} />;
+    } else if (companyLower.includes('adobe')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>Ae</Box>;
+    }
+    
+    return company.charAt(0).toUpperCase();
+  };
 
   const stats = [
     { icon: <Briefcase size={32} />, number: '1,75,324', label: 'Live Job', bgColor: '#E8F3FF' },
@@ -355,7 +415,7 @@ const Home = () => {
                       fontWeight: 700,
                       fontSize: '1.25rem'
                     }}>
-                      {job.logo}
+                      {getCompanyIcon(job.company)}
                     </Box>
                     <Box sx={{ flex: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
@@ -469,7 +529,7 @@ const Home = () => {
                     <Box sx={{ 
                       width: 56, 
                       height: 56, 
-                      bgcolor: company.color + '15', 
+                      bgcolor: company.color, 
                       borderRadius: 1,
                       display: 'flex',
                       alignItems: 'center',
@@ -477,7 +537,7 @@ const Home = () => {
                       fontSize: '1.75rem',
                       flexShrink: 0
                     }}>
-                      {company.icon}
+                      {getCompanyIcon(company.name)}
                     </Box>
                     <Box sx={{ flex: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
