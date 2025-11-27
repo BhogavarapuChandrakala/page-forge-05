@@ -26,11 +26,41 @@ import {
   Instagram,
   YouTube,
   ArrowForward,
+  Apple as AppleIcon,
+  Reddit,
 } from '@mui/icons-material';
 
 const EmployerDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const getCompanyIcon = (company: string) => {
+    const iconProps = { sx: { fontSize: 28, color: 'white' } };
+    const companyLower = company.toLowerCase();
+    
+    if (companyLower.includes('apple')) {
+      return <AppleIcon {...iconProps} />;
+    } else if (companyLower.includes('facebook')) {
+      return <Facebook {...iconProps} />;
+    } else if (companyLower.includes('microsoft')) {
+      return (
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5, width: 24, height: 24 }}>
+          <Box sx={{ bgcolor: '#F25022', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#7FBA00', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#00A4EF', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#FFB900', width: 11, height: 11 }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('upwork')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>ᑌ</Box>;
+    } else if (companyLower.includes('freepik')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>F</Box>;
+    } else if (companyLower.includes('instagram')) {
+      return <Instagram {...iconProps} />;
+    }
+    
+    return company.charAt(0).toUpperCase();
+  };
 
   const openPositions = [
     { id: 1, company: 'Freepik', title: 'Visual Designer', type: 'Featured', salary: '$10K-$15K', logo: 'F', color: '#1da1f2', location: 'China' },
@@ -73,7 +103,7 @@ const EmployerDetails = () => {
                       fontSize: '32px',
                     }}
                   >
-                    📷
+                      {getCompanyIcon('Twitter')}
                   </Box>
                   <Box sx={{ flex: 1 }}>
                     <Typography variant="h5" fontWeight={700} gutterBottom>
@@ -269,7 +299,7 @@ const EmployerDetails = () => {
                           fontWeight: 700,
                         }}
                       >
-                        {job.logo}
+                        {getCompanyIcon(job.company)}
                       </Box>
                       <Box sx={{ flex: 1 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>

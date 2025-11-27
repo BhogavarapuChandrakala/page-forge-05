@@ -28,11 +28,49 @@ import {
   CheckCircle,
   ArrowBack,
   ArrowForward,
+  Facebook,
+  Twitter,
+  Instagram,
+  YouTube,
+  Reddit,
+  Apple as AppleIcon,
 } from '@mui/icons-material';
 
 const AppliedJobs = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('applied');
+
+  const getCompanyIcon = (company: string) => {
+    const iconProps = { sx: { fontSize: 28, color: 'white' } };
+    const companyLower = company.toLowerCase();
+    
+    if (companyLower.includes('apple')) {
+      return <AppleIcon {...iconProps} />;
+    } else if (companyLower.includes('facebook')) {
+      return <Facebook {...iconProps} />;
+    } else if (companyLower.includes('microsoft')) {
+      return (
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5, width: 24, height: 24 }}>
+          <Box sx={{ bgcolor: '#F25022', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#7FBA00', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#00A4EF', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#FFB900', width: 11, height: 11 }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('dribbble')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>⛹</Box>;
+    } else if (companyLower.includes('upwork')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>ᑌ</Box>;
+    } else if (companyLower.includes('slack')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>#</Box>;
+    } else if (companyLower.includes('twitter')) {
+      return <Twitter {...iconProps} />;
+    } else if (companyLower.includes('reddit')) {
+      return <Reddit {...iconProps} />;
+    }
+    
+    return company.charAt(0).toUpperCase();
+  };
 
   const appliedJobs = [
     { id: 1, company: 'Upwork', logo: 'Up', color: '#6fda44', title: 'Networking Engineer', type: 'Remote', location: 'Washington', salary: '$50k-80k/month', date: 'Feb 2, 2019 19:28', status: 'Active' },
@@ -144,7 +182,7 @@ const AppliedJobs = () => {
                             fontWeight: 700,
                           }}
                         >
-                          {job.logo}
+                          {getCompanyIcon(job.company)}
                         </Box>
                         <Box>
                           <Typography variant="body1" fontWeight={600}>

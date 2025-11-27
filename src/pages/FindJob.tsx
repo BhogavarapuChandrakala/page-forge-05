@@ -1,5 +1,5 @@
 import { Container, Box, Typography, TextField, Button, Chip, Select, MenuItem, FormControl, InputLabel, Card, CardContent, Dialog, DialogTitle, DialogContent, RadioGroup, FormControlLabel, Radio, Checkbox, Grid, ToggleButtonGroup, ToggleButton, InputAdornment } from '@mui/material';
-import { Instagram, Facebook, Twitter, Microsoft, Reddit, YouTube, Tag } from '@mui/icons-material';
+import { Instagram, Facebook, Twitter, Microsoft, Reddit, YouTube, Tag, Apple as AppleIcon } from '@mui/icons-material';
 import { Search, MapPin, Layers, Filter, Grid3x3, List } from 'lucide-react';
 import AuthHeader from '@/components/AuthHeader';
 import { useState } from 'react';
@@ -22,16 +22,62 @@ const FindJob = () => {
   });
 
   const getCompanyIcon = (company: string) => {
-    const iconProps = { sx: { fontSize: 40, color: 'white' } };
-    switch(company.toLowerCase()) {
-      case 'instagram': return <Instagram {...iconProps} />;
-      case 'facebook': return <Facebook {...iconProps} />;
-      case 'twitter': return <Twitter {...iconProps} />;
-      case 'microsoft': return <Microsoft {...iconProps} />;
-      case 'reddit': return <Reddit {...iconProps} />;
-      case 'youtube': return <YouTube {...iconProps} />;
-      default: return company.charAt(0).toUpperCase();
+    const iconProps = { sx: { fontSize: 32, color: 'white' } };
+    const companyLower = company.toLowerCase();
+    
+    if (companyLower.includes('netflix')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>N</Box>;
+    } else if (companyLower.includes('figma')) {
+      return (
+        <Box sx={{ display: 'flex', gap: 0.3, alignItems: 'center' }}>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#F24E1E' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#FF7262' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#A259FF' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#1ABCFE' }}/>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#0ACF83' }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('google')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>G</Box>;
+    } else if (companyLower.includes('apple')) {
+      return <AppleIcon {...iconProps} />;
+    } else if (companyLower.includes('facebook')) {
+      return <Facebook {...iconProps} />;
+    } else if (companyLower.includes('amazon')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white', display: 'flex', alignItems: 'center' }}>
+        <Box component="span">a</Box>
+        <Box component="span" sx={{ fontSize: '1rem', mb: -1 }}>↗</Box>
+      </Box>;
+    } else if (companyLower.includes('microsoft')) {
+      return (
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5, width: 24, height: 24 }}>
+          <Box sx={{ bgcolor: '#F25022', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#7FBA00', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#00A4EF', width: 11, height: 11 }}/>
+          <Box sx={{ bgcolor: '#FFB900', width: 11, height: 11 }}/>
+        </Box>
+      );
+    } else if (companyLower.includes('dribbble')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>⛹</Box>;
+    } else if (companyLower.includes('upwork')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>ᑌ</Box>;
+    } else if (companyLower.includes('slack')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>#</Box>;
+    } else if (companyLower.includes('freepik')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>F</Box>;
+    } else if (companyLower.includes('twitter')) {
+      return <Twitter {...iconProps} />;
+    } else if (companyLower.includes('instagram')) {
+      return <Instagram {...iconProps} />;
+    } else if (companyLower.includes('reddit')) {
+      return <Reddit {...iconProps} />;
+    } else if (companyLower.includes('youtube')) {
+      return <YouTube {...iconProps} />;
+    } else if (companyLower.includes('adobe')) {
+      return <Box sx={{ fontWeight: 900, fontSize: '1.5rem', color: 'white' }}>Ae</Box>;
     }
+    
+    return company.charAt(0).toUpperCase();
   };
 
   const jobs = [
