@@ -1,6 +1,5 @@
-import { AppBar, Toolbar, Container, Button, Box, Typography, Select, FormControl, MenuItem, InputAdornment, TextField, IconButton, Avatar, Badge } from '@mui/material';
-import { Notifications } from '@mui/icons-material';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { AppBar, Toolbar, Container, Button, Box, Typography, Select, FormControl, MenuItem, InputAdornment, TextField } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import { Briefcase, Phone, Search } from 'lucide-react';
 import { useState } from 'react';
 
@@ -18,11 +17,10 @@ const countryFlags: Record<string, string> = {
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [language, setLanguage] = useState('english');
   const [country, setCountry] = useState('india');
   
-  const isOnFindJobPage = location.pathname === '/find-job';
+  // Treat header as global (non-auth) header — always show Sign In / Post A Jobs
 
   return (
     <Box sx={{ position: 'sticky', top: 0, zIndex: 1100, bgcolor: 'background.paper' }}>
@@ -147,7 +145,7 @@ const Header = () => {
             {/* Left - Logo, Country Selector, and Search Bar */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
               <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Briefcase size={28} color="#0066FF" />
+                <Briefcase size={28} color="#023047" />
                 <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600 }}>
                   MyJob
                 </Typography>
@@ -231,7 +229,7 @@ const Header = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Search size={18} color="#0066FF" />
+                      <Search size={18} color="#023047" />
                     </InputAdornment>
                   ),
                 }}
@@ -240,53 +238,34 @@ const Header = () => {
 
             {/* Right - Sign In and Post A Jobs OR Bell Icon and Profile */}
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              {isOnFindJobPage ? (
-                <>
-                  <IconButton sx={{ color: 'text.primary' }}>
-                    <Badge badgeContent={3} color="error">
-                      <Notifications />
-                    </Badge>
-                  </IconButton>
-                  <Avatar 
-                    sx={{ 
-                      width: 40, 
-                      height: 40, 
-                      bgcolor: '#0066FF',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    JD
-                  </Avatar>
-                </>
-              ) : (
-                <>
-                  <Button 
-                    variant="text" 
-                    onClick={() => navigate('/signin')}
-                    sx={{ 
-                      display: { xs: 'none', sm: 'flex' },
-                      color: '#0066FF',
-                      textTransform: 'none',
-                      fontWeight: 500
-                    }}
-                  >
-                    Sign In
-                  </Button>
+              <>
+                <Button 
+                  variant="text" 
+                  onClick={() => navigate('/signin')}
+                  sx={{ 
+                    display: { xs: 'none', sm: 'flex' },
+                    color: '#023047',
+                    textTransform: 'none',
+                    fontWeight: 500
+                  }}
+                >
+                  Sign In
+                </Button>
 
-                  <Button 
-                    variant="contained" 
-                    onClick={() => navigate('/signup')}
-                    sx={{ 
-                      bgcolor: '#0066FF',
-                      '&:hover': { bgcolor: '#0052CC' },
-                      textTransform: 'none',
-                      px: 3
-                    }}
-                  >
-                    Post A Jobs
-                  </Button>
-                </>
-              )}
+                <Button 
+                  variant="contained" 
+                  onClick={() => navigate('/signup')}
+                  sx={{ 
+                    bgcolor: '#FFC300',
+                    color: '#000000',
+                    '&:hover': { bgcolor: '#E6B000' },
+                    textTransform: 'none',
+                    px: 3
+                  }}
+                >
+                  Post A Jobs
+                </Button>
+              </>
             </Box>
           </Toolbar>
         </Container>

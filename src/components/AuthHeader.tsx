@@ -35,7 +35,8 @@ const AuthHeader = () => {
     <Box sx={{ position: 'sticky', top: 0, zIndex: 1100, bgcolor: 'background.paper' }}>
       {/* Top Navigation Bar */}
       <Box sx={{ bgcolor: '#F7F7F8', borderBottom: '1px solid #E5E7EB' }}>
-        <Container maxWidth="xl">
+        {/* Narrower container so top-nav is centered with side gaps */}
+        <Container maxWidth="lg">
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1.5 }}>
             {/* Left side - Navigation Links */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
@@ -47,12 +48,12 @@ const AuthHeader = () => {
                 >
                   <Typography 
                     sx={{ 
-                      color: location.pathname === item.path ? '#0066FF' : '#6B7280',
+                      color: location.pathname === item.path ? '#023047' : '#6f6f6f',
                       fontWeight: location.pathname === item.path ? 600 : 400,
                       fontSize: '0.875rem',
-                      borderBottom: location.pathname === item.path ? '2px solid #0066FF' : 'none',
+                      borderBottom: location.pathname === item.path ? '2px solid #023047' : 'none',
                       paddingBottom: '4px',
-                      '&:hover': { color: '#0066FF' },
+                      '&:hover': { color: '#023047' },
                       cursor: 'pointer'
                     }}
                   >
@@ -108,12 +109,13 @@ const AuthHeader = () => {
 
       {/* Main App Bar */}
       <Box sx={{ bgcolor: 'white', borderBottom: '1px solid #E5E7EB' }}>
-        <Container maxWidth="xl">
+        {/* Use same centered container for main bar */}
+        <Container maxWidth="lg">
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2 }}>
             {/* Left - Logo and Country */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
               <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Briefcase size={28} color="#0066FF" />
+                <Briefcase size={28} color="#023047" />
                 <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600 }}>
                   MyJob
                 </Typography>

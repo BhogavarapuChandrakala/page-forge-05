@@ -3,13 +3,13 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#0066FF',
+      main: '#023047',
     },
     secondary: {
-      main: '#f5f5f5',
+      main: '#d3d3d3',
     },
     background: {
-      default: '#ffffff',
+      default: '#f6f6f6',
       paper: '#ffffff',
     },
   },
@@ -26,8 +26,11 @@ export const theme = createTheme({
         },
         contained: {
           boxShadow: 'none',
+          backgroundColor: '#FFC300',
+          color: '#000000',
           '&:hover': {
             boxShadow: 'none',
+            backgroundColor: '#E6B000',
           },
         },
       },

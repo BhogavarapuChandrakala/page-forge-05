@@ -29,7 +29,7 @@ const SignUp = () => {
       <Box sx={{ flex: { xs: '1', md: '0 0 45%' }, bgcolor: 'white', display: 'flex', alignItems: 'center', py: 4 }}>
         <Container maxWidth="sm">
           <Link to="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
-            <Briefcase size={28} color="#0066FF" />
+            <Briefcase size={28} color="#023047" />
             <Typography variant="h6" sx={{ color: 'foreground', fontWeight: 600 }}>
               MyJob
             </Typography>
@@ -39,7 +39,7 @@ const SignUp = () => {
             Create account.
           </Typography>
           <Typography variant="body2" sx={{ mb: 4, color: 'text.secondary' }}>
-            Already have account? <Link to="/signin" style={{ color: '#0066FF', textDecoration: 'none' }}>Log In</Link>
+            Already have account? <Link to="/signin" style={{ color: '#023047', textDecoration: 'none' }}>Log In</Link>
           </Typography>
 
           <form onSubmit={handleSubmit}>
@@ -128,7 +128,7 @@ const SignUp = () => {
               }
               label={
                 <Typography variant="body2">
-                  I've read and agree with your <Link to="#" style={{ color: '#0066FF' }}>Terms of Services</Link>
+                  I've read and agree with your <Link to="#" style={{ color: '#023047' }}>Terms of Services</Link>
                 </Typography>
               }
               sx={{ mb: 3 }}

@@ -31,7 +31,7 @@ const SignIn = () => {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1.5 }}>
               <Box sx={{ display: 'flex', gap: 4 }}>
                 <Link to="/" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Home</Link>
-                <Link to="/find-job" style={{ textDecoration: 'none', color: '#0066FF', fontSize: '0.875rem', fontWeight: 600, borderBottom: '2px solid #0066FF', paddingBottom: '4px' }}>Find Job</Link>
+                <Link to="/find-job" style={{ textDecoration: 'none', color: '#023047', fontSize: '0.875rem', fontWeight: 600, borderBottom: '2px solid #023047', paddingBottom: '4px' }}>Find Job</Link>
                 <Link to="/find-employers" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Find Employers</Link>
                 <Link to="/dashboard" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Dashboard</Link>
                 <Link to="/job-alerts" style={{ textDecoration: 'none', color: '#6B7280', fontSize: '0.875rem' }}>Job Alerts</Link>
@@ -63,7 +63,7 @@ const SignIn = () => {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                 <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Briefcase size={28} color="#0066FF" />
+                  <Briefcase size={28} color="#023047" />
                   <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600 }}>
                     MyJob
                   </Typography>
@@ -128,7 +128,7 @@ const SignIn = () => {
             Sign in
           </Typography>
           <Typography variant="body2" sx={{ mb: 4, color: 'text.secondary' }}>
-            Don't have account? <Link to="/signup" style={{ color: '#0066FF', textDecoration: 'none' }}>Create Account</Link>
+            Don't have account? <Link to="/signup" style={{ color: '#023047', textDecoration: 'none' }}>Create Account</Link>
           </Typography>
 
           <form onSubmit={handleSubmit}>
@@ -169,7 +169,7 @@ const SignIn = () => {
                 }
                 label={<Typography variant="body2">Remember Me</Typography>}
               />
-              <Link to="/forgot-password" style={{ color: '#0066FF', textDecoration: 'none', fontSize: '0.875rem' }}>
+              <Link to="/forgot-password" style={{ color: '#023047', textDecoration: 'none', fontSize: '0.875rem' }}>
                 Forget password
               </Link>
             </Box>

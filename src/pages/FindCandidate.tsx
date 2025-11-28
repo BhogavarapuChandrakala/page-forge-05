@@ -73,9 +73,9 @@ const FindCandidate = () => {
         <Container maxWidth="lg">
           <Breadcrumbs separator={<NavigateNext fontSize="small" />}>
             <Link underline="hover" color="inherit" href="/">Home</Link>
-            <Typography color="text.primary">Find Employers</Typography>
+            <Typography color="text.primary">Find Candidate</Typography>
           </Breadcrumbs>
-          <Typography variant="h4" sx={{ mt: 2, fontWeight: 700 }}>Find Employers</Typography>
+          <Typography variant="h4" sx={{ mt: 2, fontWeight: 700 }}>Find Candidate</Typography>
           
           <Grid container spacing={2} sx={{ mt: 2 }}>
             <Grid item xs={12} md={4}>

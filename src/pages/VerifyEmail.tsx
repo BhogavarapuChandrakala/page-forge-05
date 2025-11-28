@@ -17,7 +17,7 @@ const VerifyEmail = () => {
       <Container maxWidth="sm">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Link to="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
-            <Briefcase size={32} color="#0066FF" />
+            <Briefcase size={32} color="#023047" />
             <Typography variant="h5" sx={{ color: 'foreground', fontWeight: 600 }}>
               MyJob
             </Typography>
@@ -54,7 +54,7 @@ const VerifyEmail = () => {
           </Button>
 
           <Typography variant="body2" sx={{ textAlign: 'center', color: 'text.secondary' }}>
-            Didn't recieve any code! <Link to="#" style={{ color: '#0066FF', textDecoration: 'none' }}>Resends</Link>
+            Didn't recieve any code! <Link to="#" style={{ color: '#023047', textDecoration: 'none' }}>Resends</Link>
           </Typography>
         </form>
       </Container>

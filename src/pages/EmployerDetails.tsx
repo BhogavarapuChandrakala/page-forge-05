@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { useRef, useState } from 'react';
+import AuthHeader from '@/components/AuthHeader';
 import {
   Box,
   Container,
@@ -12,6 +12,7 @@ import {
   Breadcrumbs,
   Link,
   Chip,
+  IconButton,
 } from '@mui/material';
 import {
   NavigateNext,
@@ -27,12 +28,20 @@ import {
   YouTube,
   ArrowForward,
   Apple as AppleIcon,
-  Reddit,
+  Settings,
+  GridView,
+  ViewList,
 } from '@mui/icons-material';
 
 const EmployerDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const openPositionsRef = useRef<HTMLDivElement>(null);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
+  const scrollToOpenPositions = () => {
+    openPositionsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const getCompanyIcon = (company: string) => {
     const iconProps = { sx: { fontSize: 28, color: 'white' } };
@@ -72,7 +81,7 @@ const EmployerDetails = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      <AuthHeader />
       
       <Box sx={{ bgcolor: 'grey.50', py: 3, borderBottom: 1, borderColor: 'grey.200' }}>
         <Container maxWidth="lg">
@@ -113,7 +122,12 @@ const EmployerDetails = () => {
                       Information Technology (IT)
                     </Typography>
                   </Box>
-                  <Button variant="contained" size="large" endIcon={<ArrowForward />}>
+                  <Button 
+                    variant="contained" 
+                    size="large" 
+                    endIcon={<ArrowForward />}
+                    onClick={scrollToOpenPositions}
+                  >
                     View Open Position
                   </Button>
                 </Box>
@@ -121,7 +135,7 @@ const EmployerDetails = () => {
                 <Typography variant="h6" fontWeight={600} gutterBottom sx={{ mt: 4 }}>
                   Description
                 </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
+                <Typography variant="body1" color="text.secondary" paragraph sx={{ lineHeight: 1.8 }}>
                   Enim at velit at nibh maximus fermentum. Mauris ac justo nibh. Praesent nec lorem lorem. 
                   Donec ullamcorper lacus mollis tortor pretium malesuada. In quis porta nibh, quis fringilla eros. 
                   Phasellus faucibus massa a efficitur blandit, orci eget porta ac, eget vulputate quam sem nec arcu. 
@@ -129,21 +143,27 @@ const EmployerDetails = () => {
                   Vestibulum in maximus orci, sed dolor fermentum. Mauris eleifend eu leo ac gravida. Etiam libero neque, 
                   consectetur leo ac viverra in, auctor nequis. Donec imperdiet massa a elementum rhoncus vulputate velit.
                 </Typography>
+                <Typography variant="body1" color="text.secondary" paragraph sx={{ lineHeight: 1.8 }}>
+                  Nam dapibus consectetur erat in euismod. Cras aliquet nibh. Sed tristique dictum elementum. Aliquam sit amet orci interdum, bibh. Sed tristique dictum elementum. In neque sit amet orci interdum tincidunt.
+                </Typography>
 
-                <Typography variant="h6" fontWeight={600} gutterBottom sx={{ mt: 3 }}>
+                <Typography variant="h6" fontWeight={600} gutterBottom sx={{ mt: 4 }}>
                   Company Benefits
                 </Typography>
-                <Box component="ul" sx={{ pl: 2 }}>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+                <Typography variant="body1" color="text.secondary" paragraph sx={{ lineHeight: 1.8, mb: 2 }}>
+                  Integer aliquet pretium consequat. Donec et sapien id leo accumsan pellentesque eget maximus tellus. Duis et est ac leo rhoncus tincidunt vitae vehicula augue.
+                </Typography>
+                <Box component="ul" sx={{ pl: 3, listStyleType: 'disc', listStylePosition: 'outside', '& li': { mb: 1.5, color: 'text.secondary', lineHeight: 1.8 } }}>
+                  <Typography component="li" variant="body1" color="text.secondary">
                     In hac habitasse platea dictum.
                   </Typography>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+                  <Typography component="li" variant="body1" color="text.secondary">
                     Sed aliquet, arcu at iaculis laoreet, nibh ante eget taliquet idum rhoncus.
                   </Typography>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+                  <Typography component="li" variant="body1" color="text.secondary">
                     Vestibulum ut vestibulum orci.
                   </Typography>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+                  <Typography component="li" variant="body1" color="text.secondary">
                     Etiam libero neque, consectetur eu tellus vitae, venenatis rhoncus vulputate velit.
                   </Typography>
                   <Typography component="li" variant="body1" color="text.secondary">
@@ -151,21 +171,41 @@ const EmployerDetails = () => {
                   </Typography>
                 </Box>
 
-                <Typography variant="h6" fontWeight={600} gutterBottom sx={{ mt: 3 }}>
+                <Typography variant="h6" fontWeight={600} gutterBottom sx={{ mt: 4 }}>
                   Company Vision
                 </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
+                <Typography variant="body1" color="text.secondary" paragraph sx={{ lineHeight: 1.8 }}>
                   Praesent ultrices congue ex, sit amet elementum at venenatis sapien blandit. Etiam massa risus, 
                   accumsan nec tempus nec, venenatis in mi. Maecenas nulla sit, blandit id rhoncus in, pulvinar eget 
                   sapor ac, cursus convallis ac. Pellentesque facilisis tincidunt dictum.
                 </Typography>
 
-                <Box sx={{ display: 'flex', gap: 2, mt: 3 }}>
+                <Box sx={{ display: 'flex', gap: 2, mt: 4, alignItems: 'center', flexWrap: 'wrap' }}>
                   <Typography variant="body2" color="text.secondary">Share profile:</Typography>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button startIcon={<Facebook />} size="small">Facebook</Button>
-                    <Button startIcon={<Twitter />} size="small">Facebook</Button>
-                    <Button size="small">Pinterest</Button>
+                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                    <Button 
+                      variant="outlined" 
+                      startIcon={<Facebook />} 
+                      size="small"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Facebook
+                    </Button>
+                    <Button 
+                      variant="outlined" 
+                      startIcon={<Twitter />} 
+                      size="small"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Twitter
+                    </Button>
+                    <Button 
+                      variant="outlined" 
+                      size="small"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Pinterest
+                    </Button>
                   </Box>
                 </Box>
               </CardContent>
@@ -173,14 +213,17 @@ const EmployerDetails = () => {
           </Grid>
 
           <Grid item xs={12} md={4}>
-            <Card sx={{ mb: 3 }}>
-              <CardContent>
-                <Grid container spacing={2}>
+            <Card sx={{ mb: 3, borderRadius: 2 }}>
+              <CardContent sx={{ p: 3 }}>
+                <Typography variant="h6" fontWeight={700} gutterBottom sx={{ mb: 3 }}>
+                  Company Overview
+                </Typography>
+                <Grid container spacing={3}>
                   <Grid item xs={6}>
-                    <Box sx={{ textAlign: 'center' }}>
-                      <CalendarToday sx={{ color: 'primary.main', fontSize: 32, mb: 1 }} />
-                      <Typography variant="caption" color="text.secondary" display="block">
-                        FOUNDED IN
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      <BusinessCenter sx={{ color: 'primary.main', fontSize: 28, mb: 0.5 }} />
+                      <Typography variant="caption" color="text.secondary" display="block" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>
+                        FOUNDED IN:
                       </Typography>
                       <Typography variant="body1" fontWeight={600}>
                         14 June, 2021
@@ -188,9 +231,9 @@ const EmployerDetails = () => {
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
-                    <Box sx={{ textAlign: 'center' }}>
-                      <BusinessCenter sx={{ color: 'primary.main', fontSize: 32, mb: 1 }} />
-                      <Typography variant="caption" color="text.secondary" display="block">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      <CalendarToday sx={{ color: 'primary.main', fontSize: 28, mb: 0.5 }} />
+                      <Typography variant="caption" color="text.secondary" display="block" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>
                         ORGANIZATION TYPE
                       </Typography>
                       <Typography variant="body1" fontWeight={600}>
@@ -199,9 +242,9 @@ const EmployerDetails = () => {
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
-                    <Box sx={{ textAlign: 'center' }}>
-                      <BusinessCenter sx={{ color: 'primary.main', fontSize: 32, mb: 1 }} />
-                      <Typography variant="caption" color="text.secondary" display="block">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      <BusinessCenter sx={{ color: 'primary.main', fontSize: 28, mb: 0.5 }} />
+                      <Typography variant="caption" color="text.secondary" display="block" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>
                         TEAM SIZE
                       </Typography>
                       <Typography variant="body1" fontWeight={600}>
@@ -210,9 +253,9 @@ const EmployerDetails = () => {
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
-                    <Box sx={{ textAlign: 'center' }}>
-                      <BusinessCenter sx={{ color: 'primary.main', fontSize: 32, mb: 1 }} />
-                      <Typography variant="caption" color="text.secondary" display="block">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      <Settings sx={{ color: 'primary.main', fontSize: 28, mb: 0.5 }} />
+                      <Typography variant="caption" color="text.secondary" display="block" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>
                         INDUSTRY TYPES
                       </Typography>
                       <Typography variant="body1" fontWeight={600}>
@@ -224,58 +267,178 @@ const EmployerDetails = () => {
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent>
-                <Typography variant="h6" fontWeight={600} gutterBottom>
+            <Card sx={{ mb: 3, borderRadius: 2 }}>
+              <CardContent sx={{ p: 3 }}>
+                <Typography variant="h6" fontWeight={700} gutterBottom sx={{ mb: 3 }}>
                   Contact Information
                 </Typography>
                 
-                <Box sx={{ mb: 2 }}>
+                <Box sx={{ mb: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                    <Language color="primary" />
-                    <Typography variant="caption" color="text.secondary">WEBSITE</Typography>
+                    <Language sx={{ color: 'primary.main', fontSize: 18 }} />
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>WEBSITE</Typography>
                   </Box>
-                  <Typography variant="body2">www.estherhoward.com</Typography>
-                </Box>
-
-                <Box sx={{ mb: 2 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                    <Phone color="primary" />
-                    <Typography variant="caption" color="text.secondary">PHONE</Typography>
-                  </Box>
-                  <Typography variant="body2">+1-202-555-0141</Typography>
+                  <Typography variant="body2" sx={{ ml: 4 }}>www.estherhoward.com</Typography>
                 </Box>
 
                 <Box sx={{ mb: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                    <Email color="primary" />
-                    <Typography variant="caption" color="text.secondary">EMAIL ADDRESS</Typography>
+                    <Phone sx={{ color: 'primary.main', fontSize: 18 }} />
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>PHONE</Typography>
                   </Box>
-                  <Typography variant="body2">esther.howard@gmail.com</Typography>
+                  <Typography variant="body2" sx={{ ml: 4 }}>+1-202-555-0141</Typography>
                 </Box>
 
-                <Typography variant="body2" fontWeight={600} gutterBottom>
+                <Box sx={{ mb: 0 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                    <Email sx={{ color: 'primary.main', fontSize: 18 }} />
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>EMAIL ADDRESS</Typography>
+                  </Box>
+                  <Typography variant="body2" sx={{ ml: 4 }}>esther.howard@gmail.com</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+
+            <Card sx={{ borderRadius: 2 }}>
+              <CardContent sx={{ p: 3 }}>
+                <Typography variant="body2" fontWeight={600} gutterBottom sx={{ mb: 2 }}>
                   Follow us on:
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1 }}>
-                  <Button variant="outlined" sx={{ minWidth: 40, p: 1 }}><Facebook /></Button>
-                  <Button variant="contained" sx={{ minWidth: 40, p: 1 }}><Twitter /></Button>
-                  <Button variant="outlined" sx={{ minWidth: 40, p: 1 }}><Instagram /></Button>
-                  <Button variant="outlined" sx={{ minWidth: 40, p: 1 }}><YouTube /></Button>
+                  <IconButton 
+                    sx={{ 
+                      bgcolor: '#1877F2', 
+                      color: 'white', 
+                      width: 40, 
+                      height: 40,
+                      '&:hover': { bgcolor: '#1565C0' }
+                    }}
+                  >
+                    <Facebook />
+                  </IconButton>
+                  <IconButton 
+                    sx={{ 
+                      bgcolor: '#1DA1F2', 
+                      color: 'white', 
+                      width: 40, 
+                      height: 40,
+                      '&:hover': { bgcolor: '#0D8BD9' }
+                    }}
+                  >
+                    <Twitter />
+                  </IconButton>
+                  <IconButton 
+                    sx={{ 
+                      bgcolor: '#FF0000', 
+                      color: 'white', 
+                      width: 40, 
+                      height: 40,
+                      '&:hover': { bgcolor: '#CC0000' }
+                    }}
+                  >
+                    <YouTube />
+                  </IconButton>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
         </Grid>
 
-        <Box sx={{ mt: 6 }}>
-          <Typography variant="h5" fontWeight={700} gutterBottom>
-            Open Position (05)
-          </Typography>
-          <Grid container spacing={3} sx={{ mt: 2 }}>
-            {openPositions.map((job) => (
-              <Grid item xs={12} sm={6} key={job.id}>
+        <Box sx={{ mt: 6 }} ref={openPositionsRef}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+            <Typography variant="h5" fontWeight={700}>
+              Open Position (05)
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <IconButton
+                onClick={() => setViewMode('grid')}
+                sx={{
+                  border: '1px solid',
+                  borderColor: viewMode === 'grid' ? '#023047' : '#d3d3d3',
+                  bgcolor: viewMode === 'grid' ? '#023047' : 'transparent',
+                  color: viewMode === 'grid' ? '#f6f6f6' : '#6f6f6f',
+                  '&:hover': {
+                    bgcolor: viewMode === 'grid' ? '#023047' : '#d3d3d3',
+                  },
+                }}
+              >
+                <GridView />
+              </IconButton>
+              <IconButton
+                onClick={() => setViewMode('list')}
+                sx={{
+                  border: '1px solid',
+                  borderColor: viewMode === 'list' ? '#023047' : '#d3d3d3',
+                  bgcolor: viewMode === 'list' ? '#023047' : 'transparent',
+                  color: viewMode === 'list' ? '#f6f6f6' : '#6f6f6f',
+                  '&:hover': {
+                    bgcolor: viewMode === 'list' ? '#023047' : '#d3d3d3',
+                  },
+                }}
+              >
+                <ViewList />
+              </IconButton>
+            </Box>
+          </Box>
+
+          {viewMode === 'grid' ? (
+            <Grid container spacing={3}>
+              {openPositions.map((job) => (
+                <Grid item xs={12} sm={6} key={job.id}>
+                  <Card
+                    sx={{
+                      cursor: 'pointer',
+                      transition: 'all 0.3s',
+                      '&:hover': { boxShadow: 4 },
+                      height: '100%',
+                    }}
+                    onClick={() => navigate(`/job/${job.id}`)}
+                  >
+                    <CardContent>
+                      <Box sx={{ display: 'flex', gap: 2 }}>
+                        <Box
+                          sx={{
+                            width: 56,
+                            height: 56,
+                            borderRadius: 1,
+                            bgcolor: job.color,
+                            color: 'white',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '20px',
+                            fontWeight: 700,
+                          }}
+                        >
+                          {getCompanyIcon(job.company)}
+                        </Box>
+                        <Box sx={{ flex: 1 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                            <Typography variant="body2" color="text.secondary">
+                              {job.company}
+                            </Typography>
+                            {job.type && (
+                              <Chip label={job.type} size="small" color="warning" />
+                            )}
+                          </Box>
+                          <Typography variant="h6" fontWeight={600} gutterBottom>
+                            {job.title}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {job.type || 'Full Time'} • {job.salary}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {openPositions.map((job) => (
                 <Card
+                  key={job.id}
                   sx={{
                     cursor: 'pointer',
                     transition: 'all 0.3s',
@@ -284,49 +447,71 @@ const EmployerDetails = () => {
                   onClick={() => navigate(`/job/${job.id}`)}
                 >
                   <CardContent>
-                    <Box sx={{ display: 'flex', gap: 2 }}>
+                    <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
                       <Box
                         sx={{
-                          width: 56,
-                          height: 56,
+                          width: 64,
+                          height: 64,
                           borderRadius: 1,
                           bgcolor: job.color,
                           color: 'white',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '20px',
+                          fontSize: '24px',
                           fontWeight: 700,
+                          flexShrink: 0,
                         }}
                       >
                         {getCompanyIcon(job.company)}
                       </Box>
-                      <Box sx={{ flex: 1 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                          <Typography variant="body2" color="text.secondary">
-                            {job.company}
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1, flexWrap: 'wrap' }}>
+                          <Typography variant="h6" fontWeight={600}>
+                            {job.title}
                           </Typography>
                           {job.type && (
                             <Chip label={job.type} size="small" color="warning" />
                           )}
                         </Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
-                          {job.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {job.type || 'Full Time'} • {job.salary}
-                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1, flexWrap: 'wrap' }}>
+                          <Typography variant="body2" color="text.secondary">
+                            {job.company}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            •
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {job.type || 'Full Time'}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            •
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {job.salary}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box sx={{ flexShrink: 0 }}>
+                        <Button
+                          variant="contained"
+                          endIcon={<ArrowForward />}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/job/${job.id}`);
+                          }}
+                        >
+                          View Details
+                        </Button>
                       </Box>
                     </Box>
                   </CardContent>
                 </Card>
-              </Grid>
-            ))}
-          </Grid>
+              ))}
+            </Box>
+          )}
         </Box>
       </Container>
-
-      <Footer />
     </Box>
   );
 };

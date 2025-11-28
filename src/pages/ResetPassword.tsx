@@ -24,7 +24,7 @@ const ResetPassword = () => {
       <Box sx={{ flex: { xs: '1', md: '0 0 45%' }, bgcolor: 'white', display: 'flex', alignItems: 'center', py: 4 }}>
         <Container maxWidth="sm">
           <Link to="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
-            <Briefcase size={28} color="#0066FF" />
+            <Briefcase size={28} color="#023047" />
             <Typography variant="h6" sx={{ color: 'foreground', fontWeight: 600 }}>
               MyJob
             </Typography>

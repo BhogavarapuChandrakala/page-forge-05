@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthHeader from '@/components/AuthHeader';
-import Footer from '@/components/Footer';
 import {
   Box,
   Container,
@@ -221,64 +220,127 @@ const FindEmployers = () => {
               </Box>
             </Box>
 
-            <Grid container spacing={2}>
-              {employers.map((employer) => (
-                <Grid item xs={12} sm={6} md={4} key={employer.id}>
+            {/* Employers list - two layout types: grid and list */}
+            {viewMode === 'grid' ? (
+              <Grid container spacing={2}>
+                {employers.map((employer) => (
+                  <Grid item xs={12} sm={6} md={4} key={employer.id}>
+                    <Card
+                      sx={{
+                        height: '100%',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s',
+                        '&:hover': {
+                          boxShadow: 4,
+                          transform: 'translateY(-4px)',
+                        },
+                      }}
+                      onClick={() => navigate(`/employer/${employer.id}`)}
+                    >
+                      <CardContent sx={{ textAlign: 'center' }}>
+                        <Box
+                          sx={{
+                            width: 64,
+                            height: 64,
+                            borderRadius: 2,
+                            bgcolor: employer.color,
+                            color: 'white',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '24px',
+                            fontWeight: 700,
+                            mx: 'auto',
+                            mb: 2,
+                          }}
+                        >
+                          {employer.logo}
+                        </Box>
+                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                          {employer.name}
+                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, mb: 2 }}>
+                          <LocationOn fontSize="small" color="action" />
+                          <Typography variant="body2" color="text.secondary">
+                            {employer.location}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            • {employer.openJobs} open Job
+                          </Typography>
+                        </Box>
+                        <Button
+                          variant="outlined"
+                          endIcon={<ArrowForward />}
+                          fullWidth
+                        >
+                          Open Position
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {employers.map((employer) => (
                   <Card
+                    key={employer.id}
                     sx={{
-                      height: '100%',
                       cursor: 'pointer',
-                      transition: 'all 0.3s',
+                      transition: 'all 0.2s',
                       '&:hover': {
                         boxShadow: 4,
-                        transform: 'translateY(-4px)',
+                        transform: 'translateY(-2px)',
                       },
                     }}
                     onClick={() => navigate(`/employer/${employer.id}`)}
                   >
-                    <CardContent sx={{ textAlign: 'center' }}>
+                    <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                       <Box
                         sx={{
-                          width: 64,
-                          height: 64,
+                          width: 56,
+                          height: 56,
                           borderRadius: 2,
                           bgcolor: employer.color,
                           color: 'white',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '24px',
+                          fontSize: '22px',
                           fontWeight: 700,
-                          mx: 'auto',
-                          mb: 2,
                         }}
                       >
                         {employer.logo}
                       </Box>
-                      <Typography variant="h6" fontWeight={600} gutterBottom>
-                        {employer.name}
-                      </Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, mb: 2 }}>
-                        <LocationOn fontSize="small" color="action" />
-                        <Typography variant="body2" color="text.secondary">
-                          {employer.location}
+                      <Box sx={{ flex: 1 }}>
+                        <Typography variant="h6" fontWeight={600}>
+                          {employer.name}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          • {employer.openJobs} open Job
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
+                          <LocationOn fontSize="small" color="action" />
+                          <Typography variant="body2" color="text.secondary">
+                            {employer.location}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            • {employer.openJobs} open Job
+                          </Typography>
+                        </Box>
+                        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                          We’re looking for talented people to join our growing team.
                         </Typography>
                       </Box>
                       <Button
                         variant="outlined"
                         endIcon={<ArrowForward />}
-                        fullWidth
+                        sx={{ whiteSpace: 'nowrap' }}
                       >
-                        Open Position
+                        View Details
                       </Button>
                     </CardContent>
                   </Card>
-                </Grid>
-              ))}
-            </Grid>
+                ))}
+              </Box>
+            )}
 
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, gap: 1 }}>
               {[1, 2, 3, 4, 5].map((page) => (
@@ -294,8 +356,6 @@ const FindEmployers = () => {
           </Grid>
         </Grid>
       </Container>
-
-      <Footer />
     </Box>
   );
 };

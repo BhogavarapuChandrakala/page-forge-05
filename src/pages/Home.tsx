@@ -17,7 +17,7 @@ import {
   Storage
 } from '@mui/icons-material';
 import { useState } from 'react';
-import Header from '@/components/Header';
+import AuthHeader from '@/components/AuthHeader';
 import Footer from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
 import homeImage from '@/assets/home_image.svg';
@@ -159,7 +159,7 @@ const Home = () => {
 
   return (
     <Box>
-      <Header />
+      <AuthHeader />
       
       {/* Hero Section */}
       <Box sx={{ bgcolor: 'hsl(220, 40%, 98%)', pt: 8, pb: 8 }}>
@@ -181,7 +181,7 @@ const Home = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Search size={20} color="#0066FF" />
+                        <Search size={20} color="#023047" />
                       </InputAdornment>
                     ),
                   }}
@@ -193,7 +193,7 @@ const Home = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <MapPin size={20} color="#0066FF" />
+                        <MapPin size={20} color="#023047" />
                       </InputAdornment>
                     ),
                   }}
@@ -202,14 +202,14 @@ const Home = () => {
                   variant="contained" 
                   size="large"
                   onClick={() => navigate('/find-job')}
-                  sx={{ px: 4, bgcolor: '#0066FF', '&:hover': { bgcolor: '#0052CC' } }}
+                  sx={{ px: 4, bgcolor: '#FFC300', color: '#000000', '&:hover': { bgcolor: '#E6B000' } }}
                 >
                   Find Job
                 </Button>
               </Paper>
               
               <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary' }}>
-                Suggestion: Designer, Programming, <span style={{ color: '#0066FF' }}>Digital Marketing</span>, Video, Animation.
+                Suggestion: Designer, Programming, <span style={{ color: '#023047' }}>Digital Marketing</span>, Video, Animation.
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -227,7 +227,18 @@ const Home = () => {
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {stats.map((stat, index) => (
               <Grid item xs={6} md={3} key={index}>
-                <Card sx={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+                <Card 
+                  sx={{ 
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                    cursor: stat.label === 'Candidates' ? 'pointer' : 'default',
+                    transition: 'all 0.3s',
+                    '&:hover': stat.label === 'Candidates' ? {
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                      transform: 'translateY(-2px)'
+                    } : {}
+                  }}
+                  onClick={stat.label === 'Candidates' ? () => navigate('/find-candidate') : undefined}
+                >
                   <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 3 }}>
                     <Box sx={{ 
                       bgcolor: stat.bgColor, 
@@ -236,7 +247,7 @@ const Home = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#0066FF'
+                      color: '#023047'
                     }}>
                       {stat.icon}
                     </Box>
@@ -266,7 +277,7 @@ const Home = () => {
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Box sx={{ 
                 cursor: 'pointer', 
-                '&:hover .vacancy-title': { color: '#0066FF' },
+                '&:hover .vacancy-title': { color: '#023047' },
                 py: 2,
                 borderBottom: '1px solid',
                 borderColor: 'divider'
@@ -294,7 +305,7 @@ const Home = () => {
                       label="Featured" 
                       size="small" 
                       sx={{ 
-                        bgcolor: '#0066FF', 
+                        bgcolor: '#FFC300', 
                         color: 'white',
                         height: 20,
                         fontSize: '0.7rem'
@@ -321,7 +332,7 @@ const Home = () => {
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
                   <Box sx={{ 
-                    bgcolor: index === 1 ? '#0066FF' : 'rgba(0,102,255,0.1)', 
+                    bgcolor: index === 1 ? '#FFC300' : 'rgba(2,48,71,0.1)', 
                     width: 80, 
                     height: 80, 
                     borderRadius: '50%', 
@@ -330,7 +341,7 @@ const Home = () => {
                     justifyContent: 'center',
                     mx: 'auto',
                     mb: 2,
-                    color: index === 1 ? 'white' : '#0066FF'
+                    color: index === 1 ? '#000000' : '#023047'
                   }}>
                     {item.icon}
                   </Box>
@@ -353,7 +364,7 @@ const Home = () => {
           <Typography variant="h4" sx={{ fontWeight: 700 }}>
             Popular category
           </Typography>
-          <Button endIcon={<ChevronRight />} sx={{ color: '#0066FF' }}>View All</Button>
+          <Button endIcon={<ChevronRight />} sx={{ color: '#023047' }}>View All</Button>
         </Box>
         <Grid container spacing={2}>
           {categories.map((category, index) => (
@@ -376,7 +387,7 @@ const Home = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#0066FF',
+                  color: '#023047',
                   flexShrink: 0
                 }}>
                   {category.icon}
@@ -401,7 +412,7 @@ const Home = () => {
           <Typography variant="h4" sx={{ fontWeight: 700 }}>
             Featured job
           </Typography>
-          <Button endIcon={<ChevronRight />} onClick={() => navigate('/find-job')} sx={{ color: '#0066FF' }}>View All</Button>
+          <Button endIcon={<ChevronRight />} onClick={() => navigate('/find-job')} sx={{ color: '#023047' }}>View All</Button>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {featuredJobs.map((job) => (
@@ -442,7 +453,7 @@ const Home = () => {
                           size="small" 
                           sx={{ 
                             bgcolor: '#E7F0FA', 
-                            color: '#0066FF', 
+                            color: '#023047', 
                             height: 20, 
                             fontSize: '0.7rem',
                             fontWeight: 500
@@ -471,7 +482,7 @@ const Home = () => {
                       }}
                       sx={{ 
                         border: '1px solid #E5E7EB',
-                        '&:hover': { bgcolor: '#E7F0FA', borderColor: '#0066FF' }
+                        '&:hover': { bgcolor: '#d3d3d3', borderColor: '#023047' }
                       }}
                     >
                       <Bookmark size={18} />
@@ -484,7 +495,7 @@ const Home = () => {
                         navigate(`/job/${job.id}`);
                       }}
                       sx={{ 
-                        bgcolor: '#0066FF', 
+                        bgcolor: '#FFC300', 
                         '&:hover': { bgcolor: '#0052CC' },
                         px: 3
                       }}
@@ -515,7 +526,7 @@ const Home = () => {
                 '&:disabled': { bgcolor: '#F5F5F5' }
               }}
             >
-              <ChevronLeft size={20} color="#0066FF" />
+              <ChevronLeft size={20} color="#023047" />
             </IconButton>
             <IconButton 
               onClick={() => setCompanyIndex(Math.min(companies.length - 8, companyIndex + 8))}
@@ -526,7 +537,7 @@ const Home = () => {
                 '&:disabled': { bgcolor: '#F5F5F5' }
               }}
             >
-              <ChevronRight size={20} color="#0066FF" />
+              <ChevronRight size={20} color="#023047" />
             </IconButton>
           </Box>
         </Box>
@@ -585,9 +596,9 @@ const Home = () => {
                     fullWidth
                     sx={{ 
                       borderColor: '#E5E7EB',
-                      color: '#0066FF',
+                      color: '#023047',
                       '&:hover': { 
-                        borderColor: '#0066FF',
+                        borderColor: '#023047',
                         bgcolor: '#E7F0FA'
                       }
                     }}
@@ -622,7 +633,7 @@ const Home = () => {
               zIndex: 1
             }}
           >
-            <ChevronLeft size={24} color="#0066FF" />
+            <ChevronLeft size={24} color="#023047" />
           </IconButton>
           <IconButton 
             onClick={() => setTestimonialIndex(Math.min(testimonials.length - 3, testimonialIndex + 1))}
@@ -639,7 +650,7 @@ const Home = () => {
               zIndex: 1
             }}
           >
-            <ChevronRight size={24} color="#0066FF" />
+            <ChevronRight size={24} color="#023047" />
           </IconButton>
           <Grid container spacing={3}>
             {testimonials.slice(testimonialIndex, testimonialIndex + 3).map((testimonial, index) => (
@@ -693,7 +704,7 @@ const Home = () => {
                   width: 8,
                   height: 8,
                   borderRadius: '50%',
-                  bgcolor: Math.floor(testimonialIndex / 3) === index ? '#0066FF' : '#D1D5DB',
+                  bgcolor: Math.floor(testimonialIndex / 3) === index ? '#FFC300' : '#d3d3d3',
                   cursor: 'pointer',
                   transition: 'all 0.3s'
                 }}
@@ -722,7 +733,7 @@ const Home = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card sx={{ bgcolor: 'primary.main', color: 'white', height: '100%' }}>
+            <Card sx={{ bgcolor: '#023047', color: '#f6f6f6', height: '100%' }}>
               <CardContent sx={{ p: 4 }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
                   Become a Employers
@@ -730,7 +741,7 @@ const Home = () => {
                 <Typography variant="body2" sx={{ mb: 3, opacity: 0.9 }}>
                   Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor. Pelque augue risus, aliqu.
                 </Typography>
-                <Button variant="contained" sx={{ bgcolor: 'white', color: 'primary.main', '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' } }} endIcon={<ChevronRight />} onClick={() => navigate('/signup')}>
+                <Button variant="contained" sx={{ bgcolor: '#f6f6f6', color: '#023047', '&:hover': { bgcolor: '#d3d3d3' } }} endIcon={<ChevronRight />} onClick={() => navigate('/signup')}>
                   Register Now
                 </Button>
               </CardContent>
